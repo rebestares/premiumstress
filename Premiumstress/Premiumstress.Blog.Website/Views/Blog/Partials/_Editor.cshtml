@@ -1,0 +1,73 @@
+﻿<div class="row">
+    <div class="large-12 columns alert-holder margin-handler">
+    </div>
+</div>
+<div class="row collapse margin-handler">
+
+    <div class="large-8 large-push-2 small-12 small-push-0 medium-10 medium-push-1">
+        <div class="row">
+            <div class="large-7 medium-8 small-12 columns">
+                <label>
+                    Title
+                    <input type="text" placeholder="Title" ng-required="true" ng-model="blog.Title" ng-value="blog.Title" name="title" maxlength="150"/>
+                </label>
+            </div>
+            <div class="large-2 medium-4 small-12 columns ">
+                <label>
+                    Category
+                    <select data-ng-options="category.Name for category in categoryList" data-ng-model="blog.category"></select>
+                </label>
+            </div>
+            <div class="large-3 medium-4 small-12 columns ">
+                <label>
+                    Upload Image For Blog
+                    <input type="file" name="file" custom-on-change="uploadFile" ng-disabled="transactionInProgress"/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                Content
+                <div class="add-content-holder">
+                    <div>
+                        <text-angular ng-model="htmlVariable" ng-required="true" name="blogContent" text-angular-name="addBlogContent"></text-angular>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>
+                    Video
+                    <input type="text" placeholder="Video Link" ng-model="blog.VideoLink" ng-value="blog.VideoLink" name="videoLink"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <label>
+                    Keywords
+                    <input type="text" placeholder="Keywords" ng-model="blog.Keywords" ng-value="blog.Keywords" name="keywords"/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="button-bar">
+                    <ul class="button-group">
+                        <li>
+                            <input type="button" ng-disabled="transactionInProgress" class="tiny button" value="Cancel" ng-click="goToBlog()"/>
+                        </li>
+                        <li>
+                            <input type="submit" ng-disabled="transactionInProgress" class="tiny button add-blog" value="Submit"/>
+                        </li>
+                        <li>
+                            <input type="button" ng-disabled="transactionInProgress" class="tiny button" value="Reset"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

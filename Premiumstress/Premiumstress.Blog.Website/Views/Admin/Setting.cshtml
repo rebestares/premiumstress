@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Settings";
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div class="row" ng-controller="AdminController" id="SettingsContainer">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div id="settings-wrapper" class="hide-content">
+        <div class="row">
+            <div class="large-3 columns side-bar-container margin-handler">
+                <div class="row">
+                    <div class="large-12 column outer-panel">
+                        <h2 class="text-center">Settings</h2>
+                        @*<header-sidebar title="Preference" is-collapsed="true" icon-style="fa-tags"></header-sidebar>*@
+                        <header-sidebar title="User" is-collapsed="true" icon-style="fa-list-alt"></header-sidebar>
+                        <header-sidebar title="Article" is-collapsed="true" icon-style="fa-star"></header-sidebar>
+                        <header-sidebar title="Category Settings" is-collapsed="true" icon-style="fa-star"></header-sidebar>
+                        <header-sidebar title="Tag Settings" is-collapsed="true" icon-style="fa-star"></header-sidebar>
+                        <header-sidebar title="Password" is-collapsed="true"></header-sidebar>
+                    </div>
+                </div>
+            </div>
+            <div class="large-9 columns">
+
+                <div class="row collapse">
+                    <div ng-view autoscroll="true"></div>
+                </div>
+
+            </div>
+        </div>
+
+        @section scripts{
+        
+            <script>
+                $(document).ready(function () {
+                    var getCurrentUser = true;
+                    angular.element(document.getElementById('SettingsContainer')).scope().getUserProfile(null);
+                    angular.element(document.getElementById('SettingsContainer')).scope().getCategories();
+
+                    @Html.Partial("_PartialScripts/_HeadScripts");
+                });
+            </script>
+        }
+    </div>
+</div>
+

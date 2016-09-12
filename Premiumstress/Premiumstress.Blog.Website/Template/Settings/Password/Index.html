@@ -1,0 +1,38 @@
+﻿<div class="row" ng-init="getUserProfile()">
+
+    <div class="outer-panel large-12 margin-handler columns">
+        <h2>Change Password</h2>
+
+        <div class="row collapse">
+            <div class="large-12 column alert-holder">
+                <div data-alert class="alert-box + {{changePassClass}} + radius" ng-bind="changePasswordNotifier" ng-show="changePasswordNotifier">
+                    None<a class="close">&times;</a>
+                </div>
+            </div>
+        </div>
+
+        <form name="changePassword">
+
+            <label>
+                Old Password
+                <input type="password"
+                       ng-model="oldPassword"
+                       required />
+            </label>
+            <label>
+                New Password
+                <input type="password"
+                       ng-model="newPassword"
+                       required />
+            </label>
+            <label>
+                Confirm new Password
+                <input type="password"
+                       ng-model="confirmPassword"
+                       required />
+            </label>
+            <input type="submit" class="button tiny" value="Save"
+                   ng-click="savePassword()" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿<div class="row" id="categoryPanel" ng-controller="CategoryController" ng-init="setCategoryMode('edit')">
+    <div class="large-12 columns margin-handler outer-panel">
+        <div id="successCategory" class="success-reveal-class small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <a class="close-reveal-modal-success" aria-label="Close" ng-click="closeSuccessAlert()">&#215;</a>
+            <h2 id="modalTitle">Success!</h2>
+            <p class="lead">You have successfully updated categories.</p>
+
+        </div>
+
+        <div id="failCategory" class="fail-reveal-class small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <a class="close-reveal-modal-success" aria-label="Close" ng-click="closeSuccessAlert()">&#215;</a>
+            <h2 id="modalTitle">Error!</h2>
+            <p class="lead" ng-bind="failAlertBody">You have successfully updated categories.</p>
+
+        </div>
+
+        <h2>
+            <span ng-bind="categoryMode"></span> Category
+        </h2>
+
+        <div class="margin-handler">
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>
+                        Current Category List
+                        <select data-ng-options="category.Name for category in categoryList"
+                                data-ng-model="categoryItem"></select>
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>
+                        New Category List
+                        <select data-ng-options="category.Name for category in newCategoryList"
+                                data-ng-model="newCategoryItem"></select>
+                    </label>
+                </div>
+            </div>
+
+            <label>
+                Edit Selected Category
+                <input type="text"
+                       ng-model="newCategoryItem.Name"
+                       required />
+            </label>
+
+            <input type="button" class="button tiny" value="Save"
+                   ng-click="saveCategory(categoryMode)" />
+        </div>
+
+     
+    </div>
+</div>

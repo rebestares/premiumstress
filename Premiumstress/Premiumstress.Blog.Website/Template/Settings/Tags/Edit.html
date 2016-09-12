@@ -1,0 +1,19 @@
+﻿<div class="row" ng-init="getAllTags()">
+   
+    <div class="large-12 column margin-handler outer-panel">
+        <div class="user-table">
+            <h2>All Tags</h2>
+            <div class="margin-handler">
+                <generic-table list="tags"
+                               header='["ID","Name"]'
+                               columns='[
+                           [{"model":"vm.ID"}],
+                           [{"model":"vm.Keywords", "rowClass" : "text-justify",
+                                "link":[{"clickFunction" : "getUserProfile(vm.ID)", "class" : "text-center"}]}]
+                          ]'>
+                </generic-table>
+            </div>
+        </div>
+    </div>
+</div>
+

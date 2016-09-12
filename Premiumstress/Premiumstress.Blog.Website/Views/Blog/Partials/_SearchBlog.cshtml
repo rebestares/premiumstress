@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <div class="large-12 columns margin-handler">
+        <div class="row collapse margin-handler-alert">
+            <div class="large-11 small-9 columns">
+                <input type="text" placeholder="Find blog entry" 
+                       class="search-field"
+                       ng-model="searchedWord"
+                       ng-keypress="($event.which === 13)?goToSearch(searchedWord,1):0">
+            </div>
+            <div class="large-1 small-3 columns">
+                <a href="#"
+                   class="alert button tiny search-button" 
+                   ng-click="goToSearch(searchedWord,1)">Search</a>
+            </div>
+        </div>
+    </div>
+</div>

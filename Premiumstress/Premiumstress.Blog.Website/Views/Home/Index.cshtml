@@ -1,0 +1,12 @@
+﻿<div class="row" data-ng-app="BucketList" data-ng-controller="BlogController">
+    <a href="/test">Test</a>
+    <div ng-view></div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts");
+        });
+    </script>
+}

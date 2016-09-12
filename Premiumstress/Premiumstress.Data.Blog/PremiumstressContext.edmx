@@ -1,0 +1,1347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Premiumstress.Data.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="DatePosted" Type="date" />
+          <Property Name="DateDeleted" Type="date" />
+          <Property Name="DateUpdated" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="ViewCount" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsPromoted" Type="bit" />
+          <Property Name="IsSuggested" Type="bit" />
+          <Property Name="IsApproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="BlogComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatePosted" Type="datetime2" Precision="7" />
+          <Property Name="DateDeleted" Type="datetime2" Precision="7" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BlogID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BlogCommentReply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatePosted" Type="datetime2" Precision="7" />
+          <Property Name="DateDeleted" Type="datetime2" Precision="7" />
+          <Property Name="DateUpdated" Type="datetime2" Precision="7" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="BlogCommentID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BlogImage">
+          <Key>
+            <PropertyRef Name="BlogID" />
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="BlogID" Type="int" Nullable="false" />
+          <Property Name="ImageID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogKeywords">
+          <Key>
+            <PropertyRef Name="BlogID" />
+            <PropertyRef Name="KeywordID" />
+          </Key>
+          <Property Name="BlogID" Type="int" Nullable="false" />
+          <Property Name="KeywordID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogVideos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoLink" Type="nvarchar(max)" />
+          <Property Name="BlogID" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="ParentCategoryID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagelinks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullImageLink" Type="nvarchar(max)" />
+          <Property Name="ThumbnailImageLink" Type="nvarchar(max)" />
+          <Property Name="MediumImageLink" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="DatePosted" Type="date" Nullable="false" />
+          <Property Name="DateDeleted" Type="date" />
+          <Property Name="DateUpdated" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="PostComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DatePosted" Type="date" />
+          <Property Name="DateDeleted" Type="date" />
+          <Property Name="DateUpdated" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PostID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PremiumStress.dbo.Settings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShortFilm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="DatePosted" Type="date" />
+          <Property Name="DateDeleted" Type="date" />
+          <Property Name="DateUpdated" Type="date" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="ViewCount" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Images" Type="int" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ShortFilmCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ShortFilmImage">
+          <Key>
+            <PropertyRef Name="ShortFilmID" />
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ShortFilmID" Type="int" Nullable="false" />
+          <Property Name="ImageID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="DateJoined" Type="date" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="About" Type="nvarchar(max)" />
+          <Property Name="IsInactive" Type="bit" />
+          <Property Name="IsLoggedIn" Type="bit" />
+          <Property Name="LastLoggedIn" Type="date" />
+        </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ImageID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Videos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Blog_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCategory_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogCategory" Type="Self.BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="BlogCategory" Type="Self.BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogComment_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogComment" Type="Self.BlogComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogComment">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCommentReply_BlogComment">
+          <End Role="BlogComment" Type="Self.BlogComment" Multiplicity="0..1" />
+          <End Role="BlogCommentReply" Type="Self.BlogCommentReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogComment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCommentReply">
+              <PropertyRef Name="BlogCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogImage_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BlogImage" Type="Self.BlogImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogImage">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogImage_Imagelinks">
+          <End Role="Imagelinks" Type="Self.Imagelinks" Multiplicity="1" />
+          <End Role="BlogImage" Type="Self.BlogImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagelinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogImage">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogKeywords_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+          <End Role="BlogKeywords" Type="Self.BlogKeywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogKeywords">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogKeywords_Keyword">
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="1" />
+          <End Role="BlogKeywords" Type="Self.BlogKeywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keyword">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogKeywords">
+              <PropertyRef Name="KeywordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogVideos_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogVideos" Type="Self.BlogVideos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogVideos">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComment_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostComment">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilm_Imagelinks">
+          <End Role="Imagelinks" Type="Self.Imagelinks" Multiplicity="0..1" />
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagelinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilm">
+              <PropertyRef Name="Images" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilmCategory_ShortFilm">
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="1" />
+          <End Role="ShortFilmCategory" Type="Self.ShortFilmCategory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ShortFilm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilmCategory">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilmImage_Imagelinks">
+          <End Role="Imagelinks" Type="Self.Imagelinks" Multiplicity="1" />
+          <End Role="ShortFilmImage" Type="Self.ShortFilmImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagelinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilmImage">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilmImage_ShortFilm">
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="1" />
+          <End Role="ShortFilmImage" Type="Self.ShortFilmImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShortFilm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilmImage">
+              <PropertyRef Name="ShortFilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImage_Imagelinks">
+          <End Role="Imagelinks" Type="Self.Imagelinks" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagelinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImage_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PremiumstressDataStoreContainer">
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogComment" EntityType="Self.BlogComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogCommentReply" EntityType="Self.BlogCommentReply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogImage" EntityType="Self.BlogImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogKeywords" EntityType="Self.BlogKeywords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogVideos" EntityType="Self.BlogVideos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagelinks" EntityType="Self.Imagelinks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keyword" EntityType="Self.Keyword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Place" EntityType="Self.Place" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostComment" EntityType="Self.PostComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShortFilm" EntityType="Self.ShortFilm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShortFilmCategory" EntityType="Self.ShortFilmCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShortFilmImage" EntityType="Self.ShortFilmImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Settings].[ID] AS [ID]
+    FROM [dbo].[Settings] AS [Settings]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Blog_User" Association="Self.FK_Blog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCategory_Blog" Association="Self.FK_BlogCategory_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="BlogCategory" EntitySet="BlogCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCategory_Category" Association="Self.FK_BlogCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="BlogCategory" EntitySet="BlogCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogComment_Blog" Association="Self.FK_BlogComment_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="BlogComment" EntitySet="BlogComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCommentReply_BlogComment" Association="Self.FK_BlogCommentReply_BlogComment">
+            <End Role="BlogComment" EntitySet="BlogComment" />
+            <End Role="BlogCommentReply" EntitySet="BlogCommentReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogImage_Blog" Association="Self.FK_BlogImage_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="BlogImage" EntitySet="BlogImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogImage_Imagelinks" Association="Self.FK_BlogImage_Imagelinks">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="BlogImage" EntitySet="BlogImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogKeywords_Blog" Association="Self.FK_BlogKeywords_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="BlogKeywords" EntitySet="BlogKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogKeywords_Keyword" Association="Self.FK_BlogKeywords_Keyword">
+            <End Role="Keyword" EntitySet="Keyword" />
+            <End Role="BlogKeywords" EntitySet="BlogKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogVideos_Blog" Association="Self.FK_BlogVideos_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="BlogVideos" EntitySet="BlogVideos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComment_Post" Association="Self.FK_PostComment_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostComment" EntitySet="PostComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComment_User" Association="Self.FK_PostComment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PostComment" EntitySet="PostComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilm_Imagelinks" Association="Self.FK_ShortFilm_Imagelinks">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="ShortFilm" EntitySet="ShortFilm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilmCategory_ShortFilm" Association="Self.FK_ShortFilmCategory_ShortFilm">
+            <End Role="ShortFilm" EntitySet="ShortFilm" />
+            <End Role="ShortFilmCategory" EntitySet="ShortFilmCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilmImage_Imagelinks" Association="Self.FK_ShortFilmImage_Imagelinks">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="ShortFilmImage" EntitySet="ShortFilmImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilmImage_ShortFilm" Association="Self.FK_ShortFilmImage_ShortFilm">
+            <End Role="ShortFilm" EntitySet="ShortFilm" />
+            <End Role="ShortFilmImage" EntitySet="ShortFilmImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_Imagelinks" Association="Self.FK_UserImage_Imagelinks">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="UserImage" EntitySet="UserImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_User" Association="Self.FK_UserImage_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserImage" EntitySet="UserImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Premiumstress.Data" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePosted" Type="DateTime" Precision="0" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Blog_User" FromRole="Blog" ToRole="User" />
+          <NavigationProperty Name="BlogCategories" Relationship="Self.FK_BlogCategory_Blog" FromRole="Blog" ToRole="BlogCategory" />
+          <NavigationProperty Name="BlogComments" Relationship="Self.FK_BlogComment_Blog" FromRole="Blog" ToRole="BlogComment" />
+          <NavigationProperty Name="BlogVideos" Relationship="Self.FK_BlogVideos_Blog" FromRole="Blog" ToRole="BlogVideos" />
+          <NavigationProperty Name="Imagelinks" Relationship="Self.BlogImage" FromRole="Blog" ToRole="Imagelinks" />
+          <NavigationProperty Name="Keywords" Relationship="Self.BlogKeywords" FromRole="Blog" ToRole="Keyword" />
+          <Property Name="IsPromoted" Type="Boolean" />
+          <Property Name="IsSuggested" Type="Boolean" />
+          <Property Name="IsApproved" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_BlogCategory_Blog" FromRole="BlogCategory" ToRole="Blog" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_BlogCategory_Category" FromRole="BlogCategory" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="BlogComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatePosted" Type="DateTime" Precision="7" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="7" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BlogID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_BlogComment_Blog" FromRole="BlogComment" ToRole="Blog" />
+          <NavigationProperty Name="BlogCommentReplies" Relationship="Self.FK_BlogCommentReply_BlogComment" FromRole="BlogComment" ToRole="BlogCommentReply" />
+        </EntityType>
+        <EntityType Name="BlogCommentReply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatePosted" Type="DateTime" Precision="7" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="7" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="7" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="BlogCommentID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BlogComment" Relationship="Self.FK_BlogCommentReply_BlogComment" FromRole="BlogCommentReply" ToRole="BlogComment" />
+        </EntityType>
+        <EntityType Name="BlogVideo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogID" Type="Int32" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_BlogVideos_Blog" FromRole="BlogVideos" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BlogCategories" Relationship="Self.FK_BlogCategory_Category" FromRole="Category" ToRole="BlogCategory" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="ParentCategoryID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagelink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MediumImageLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ShortFilms" Relationship="Self.FK_ShortFilm_Imagelinks" FromRole="Imagelinks" ToRole="ShortFilm" />
+          <NavigationProperty Name="Blogs" Relationship="Self.BlogImage" FromRole="Imagelinks" ToRole="Blog" />
+          <NavigationProperty Name="ShortFilms1" Relationship="Self.ShortFilmImage" FromRole="Imagelinks" ToRole="ShortFilm" />
+          <NavigationProperty Name="Users" Relationship="Self.UserImage" FromRole="Imagelinks" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blogs" Relationship="Self.BlogKeywords" FromRole="Keyword" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComment_Post" FromRole="Post" ToRole="PostComment" />
+        </EntityType>
+        <EntityType Name="PostComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DatePosted" Type="DateTime" Precision="0" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PostID" Type="Int32" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_PostComment_Post" FromRole="PostComment" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK_PostComment_User" FromRole="PostComment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ShortFilm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePosted" Type="DateTime" Precision="0" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Images" Type="Int32" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Imagelink" Relationship="Self.FK_ShortFilm_Imagelinks" FromRole="ShortFilm" ToRole="Imagelinks" />
+          <NavigationProperty Name="ShortFilmCategory" Relationship="Self.FK_ShortFilmCategory_ShortFilm" FromRole="ShortFilm" ToRole="ShortFilmCategory" />
+          <NavigationProperty Name="Imagelinks" Relationship="Self.ShortFilmImage" FromRole="ShortFilm" ToRole="Imagelinks" />
+        </EntityType>
+        <EntityType Name="ShortFilmCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ShortFilm" Relationship="Self.FK_ShortFilmCategory_ShortFilm" FromRole="ShortFilmCategory" ToRole="ShortFilm" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateJoined" Type="DateTime" Precision="0" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" />
+          <Property Name="IsLoggedIn" Type="Boolean" />
+          <Property Name="LastLoggedIn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Blogs" Relationship="Self.FK_Blog_User" FromRole="User" ToRole="Blog" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="PostComments" Relationship="Self.FK_PostComment_User" FromRole="User" ToRole="PostComment" />
+          <NavigationProperty Name="Imagelinks" Relationship="Self.UserImage" FromRole="User" ToRole="Imagelinks" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Blog_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCategory_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogCategory" Type="Self.BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogComment_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogComment" Type="Self.BlogComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogComment">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogVideos_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="BlogVideos" Type="Self.BlogVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogVideos">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="BlogCategory" Type="Self.BlogCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogCommentReply_BlogComment">
+          <End Role="BlogComment" Type="Self.BlogComment" Multiplicity="0..1" />
+          <End Role="BlogCommentReply" Type="Self.BlogCommentReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogComment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogCommentReply">
+              <PropertyRef Name="BlogCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilm_Imagelinks">
+          <End Role="Imagelinks" Type="Self.Imagelink" Multiplicity="0..1" />
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagelinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilm">
+              <PropertyRef Name="Images" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComment_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostComment">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostComment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShortFilmCategory_ShortFilm">
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="1" />
+          <End Role="ShortFilmCategory" Type="Self.ShortFilmCategory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ShortFilm">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShortFilmCategory">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BlogImage">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <End Role="Imagelinks" Type="Self.Imagelink" Multiplicity="*" />
+        </Association>
+        <Association Name="BlogKeywords">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <End Role="Keyword" Type="Self.Keyword" Multiplicity="*" />
+        </Association>
+        <Association Name="ShortFilmImage">
+          <End Role="Imagelinks" Type="Self.Imagelink" Multiplicity="*" />
+          <End Role="ShortFilm" Type="Self.ShortFilm" Multiplicity="*" />
+        </Association>
+        <Association Name="UserImage">
+          <End Role="Imagelinks" Type="Self.Imagelink" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PremiumStressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="BlogCategories" EntityType="Self.BlogCategory" />
+          <EntitySet Name="BlogComments" EntityType="Self.BlogComment" />
+          <EntitySet Name="BlogCommentReplies" EntityType="Self.BlogCommentReply" />
+          <EntitySet Name="BlogVideos" EntityType="Self.BlogVideo" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Imagelinks" EntityType="Self.Imagelink" />
+          <EntitySet Name="Keywords" EntityType="Self.Keyword" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="PostComments" EntityType="Self.PostComment" />
+          <EntitySet Name="ShortFilms" EntityType="Self.ShortFilm" />
+          <EntitySet Name="ShortFilmCategories" EntityType="Self.ShortFilmCategory" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Videos" EntityType="Self.Video" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <AssociationSet Name="FK_Blog_User" Association="Self.FK_Blog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCategory_Blog" Association="Self.FK_BlogCategory_Blog">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="BlogCategory" EntitySet="BlogCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogComment_Blog" Association="Self.FK_BlogComment_Blog">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="BlogComment" EntitySet="BlogComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogVideos_Blog" Association="Self.FK_BlogVideos_Blog">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="BlogVideos" EntitySet="BlogVideos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCategory_Category" Association="Self.FK_BlogCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="BlogCategory" EntitySet="BlogCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogCommentReply_BlogComment" Association="Self.FK_BlogCommentReply_BlogComment">
+            <End Role="BlogComment" EntitySet="BlogComments" />
+            <End Role="BlogCommentReply" EntitySet="BlogCommentReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilm_Imagelinks" Association="Self.FK_ShortFilm_Imagelinks">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="ShortFilm" EntitySet="ShortFilms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComment_Post" Association="Self.FK_PostComment_Post">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="PostComment" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostComment_User" Association="Self.FK_PostComment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PostComment" EntitySet="PostComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShortFilmCategory_ShortFilm" Association="Self.FK_ShortFilmCategory_ShortFilm">
+            <End Role="ShortFilm" EntitySet="ShortFilms" />
+            <End Role="ShortFilmCategory" EntitySet="ShortFilmCategories" />
+          </AssociationSet>
+          <AssociationSet Name="BlogImage" Association="Self.BlogImage">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+          </AssociationSet>
+          <AssociationSet Name="BlogKeywords" Association="Self.BlogKeywords">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="Keyword" EntitySet="Keywords" />
+          </AssociationSet>
+          <AssociationSet Name="ShortFilmImage" Association="Self.ShortFilmImage">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="ShortFilm" EntitySet="ShortFilms" />
+          </AssociationSet>
+          <AssociationSet Name="UserImage" Association="Self.UserImage">
+            <End Role="Imagelinks" EntitySet="Imagelinks" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PremiumstressDataStoreContainer" CdmEntityContainer="PremiumStressEntities">
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsSuggested" ColumnName="IsSuggested" />
+                <ScalarProperty Name="IsPromoted" ColumnName="IsPromoted" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogCategories">
+            <EntityTypeMapping TypeName="Premiumstress.Data.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogComments">
+            <EntityTypeMapping TypeName="Premiumstress.Data.BlogComment">
+              <MappingFragment StoreEntitySet="BlogComment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogCommentReplies">
+            <EntityTypeMapping TypeName="Premiumstress.Data.BlogCommentReply">
+              <MappingFragment StoreEntitySet="BlogCommentReply">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BlogCommentID" ColumnName="BlogCommentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogVideos">
+            <EntityTypeMapping TypeName="Premiumstress.Data.BlogVideo">
+              <MappingFragment StoreEntitySet="BlogVideos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ParentCategoryID" ColumnName="ParentCategoryID" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagelinks">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Imagelink">
+              <MappingFragment StoreEntitySet="Imagelinks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullImageLink" ColumnName="FullImageLink" />
+                <ScalarProperty Name="ThumbnailImageLink" ColumnName="ThumbnailImageLink" />
+                <ScalarProperty Name="MediumImageLink" ColumnName="MediumImageLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keywords">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Keyword">
+              <MappingFragment StoreEntitySet="Keyword">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Place">
+              <MappingFragment StoreEntitySet="Place">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostComments">
+            <EntityTypeMapping TypeName="Premiumstress.Data.PostComment">
+              <MappingFragment StoreEntitySet="PostComment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShortFilms">
+            <EntityTypeMapping TypeName="Premiumstress.Data.ShortFilm">
+              <MappingFragment StoreEntitySet="ShortFilm">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShortFilmCategories">
+            <EntityTypeMapping TypeName="Premiumstress.Data.ShortFilmCategory">
+              <MappingFragment StoreEntitySet="ShortFilmCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Premiumstress.Data.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Premiumstress.Data.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="IsLoggedIn" ColumnName="IsLoggedIn" />
+                <ScalarProperty Name="LastLoggedIn" ColumnName="LastLoggedIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Video">
+              <MappingFragment StoreEntitySet="Videos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="Premiumstress.Data.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BlogImage" TypeName="Premiumstress.Data.BlogImage" StoreEntitySet="BlogImage">
+            <EndProperty Name="Blog">
+              <ScalarProperty Name="ID" ColumnName="BlogID" />
+            </EndProperty>
+            <EndProperty Name="Imagelinks">
+              <ScalarProperty Name="ID" ColumnName="ImageID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BlogKeywords" TypeName="Premiumstress.Data.BlogKeywords" StoreEntitySet="BlogKeywords">
+            <EndProperty Name="Blog">
+              <ScalarProperty Name="ID" ColumnName="BlogID" />
+            </EndProperty>
+            <EndProperty Name="Keyword">
+              <ScalarProperty Name="ID" ColumnName="KeywordID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ShortFilmImage" TypeName="Premiumstress.Data.ShortFilmImage" StoreEntitySet="ShortFilmImage">
+            <EndProperty Name="Imagelinks">
+              <ScalarProperty Name="ID" ColumnName="ImageID" />
+            </EndProperty>
+            <EndProperty Name="ShortFilm">
+              <ScalarProperty Name="ID" ColumnName="ShortFilmID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserImage" TypeName="Premiumstress.Data.UserImage" StoreEntitySet="UserImage">
+            <EndProperty Name="Imagelinks">
+              <ScalarProperty Name="ID" ColumnName="ImageID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

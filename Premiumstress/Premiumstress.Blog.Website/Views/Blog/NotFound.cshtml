@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Blog Not Found";
+}
+
+<div class="preloader" id="Loading-container">
+    <div class="text-center">Loading...</div>
+</div>
+<div class=" hide-content" id="blog-nofound-wrapper">
+    <div class="blogNotFound-Container text-center">
+        <h4>Unfortunately the blog post that you're looking for is <span class="deleted">not found </span><strong>or</strong> it might have been <span class="deleted">deleted</span> already.</h4>
+        <h4>
+            You can return to
+            <span><a href="/blog/"><strong>Home </strong></a></span>
+            or check the suggested posts below <i class="fi-arrow-down medium"></i>
+        </h4>
+    </div>
+
+
+    <div class="row margin-handler" data-ng-controller="BlogController" id="BlogContainer">
+        <div class="row">
+            <div class="large-8 large-push-2 small-10 small-push-1 columns">
+                <div class="ad-block" ng-repeat="blog in listOfBlogs">
+                    <div itemscope itemtype="http://schema.org/BlogPosting">
+                        <article class="content row" data-equalizer>
+                            @*Picture goes here*@
+                            <div class="medium-4 small-4 columns article-margin" data-equalizer-watch>
+                                <a href="{{getSingleBlogLink(blog.ID, blog.Title)}}"
+                                   class="blog-title-formatting"
+                                   title="{{blog.Title}}">
+                                    <img itemprop="image" ng-src="{{blog.ImageLinks.FullImageLink | searchResultImg}}" alt="" />
+                                </a>
+                                <p class="subheader show-for-small-only">
+                                    By <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}" ng-bind="blog.User.Fullname"></a><br />
+                                    @*on <span ng-bind="blog.DatePosted" class="date-posted"></span>*@<span ng-hide="!blog.Keywords.length">
+                                    </span>
+                                </p>
+                                <p class="subheader show-for-small-only">
+                                    <span ng-hide="!blog.keywords.length">
+                                        Tags :
+                                    </span><br /> <span ng-repeat="keyword in blog.Keywords">
+                                        <a href="{{getKeywordLink(keyword)}}">
+                                            <span ng-class-odd="'label'" ng-class-even="'label alert'" ng-bind="keyword"></span>
+                                        </a>
+                                    </span>
+                                </p>
+                            </div>
+                            @*Content goes here*@
+                            <div class="medium-8 small-8 columns article-margin" data-equalizer-watch>
+                                @*<a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}">
+                                    <img alt="person" class="author hide-for-medium-down" ng-src="{{blog.User.ImageLinks.ThumbnailImageLink | searchResultImg}}">
+                                </a>*@
+                                <a href="{{getSingleBlogLink(blog.ID, blog.Title)}}" class="blog-title-formatting" title="{{blog.Title}}">
+                                    <h2 itemprop="headline" ng-bind-html="(blog.Title | BlogTitleFormat)"></h2>
+                                </a>
+                                <p class="subheader hide-for-small-only">
+                                    By
+                                    <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}">
+                                        <span itemprop="author" ng-bind="blog.User.FirstName +' '+ blog.User.LastName"></span>
+                                    </a>
+                                    on
+                                    <span itemprop="datePublished" ng-bind="blog.DatePosted" class="date-posted"></span>
+                                    <span ng-hide="!blog.Keywords.length">
+                                    </span>
+                                </p>
+                                <p class="subheader hide-for-small-only" ">
+                        <span ng-hide=" !blog.keywords.length">
+                                    Tags :</span><span ng-repeat="keyword in blog.Keywords">
+                                        <a href="{{getKeywordLink(keyword)}}">
+                                            <span ng-class-odd="'label'" ng-class-even="'label alert'" ng-bind="keyword"></span>
+                                        </a>
+                                    </span>
+                                </p>
+                                <div class="blog-content-formatting">
+                                    <p itemprop="articleBody" ng-bind-html="blog.Content | BlogContentFormat"></p>
+                                </div>
+                                <a itemprop="url"
+                                   href="{{getSingleBlogLink(blog.ID, blog.Title)}}"
+                                   class="ghost button">Read more &rarrlp;</a>
+                            </div>
+                        </article>
+                        <div class="content-divider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts")
+
+            angular.element(document.getElementById('BlogContainer')).scope().getFeatured(true);
+        });
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Edit Blog";
+}
+
+<form name="addBlogForm" id="BlogContainer" ng-controller="BlogController" ng-init="$setDirty()" ng-submit="editBlogPost(true)" method="post" enctype="multipart/form-data" novalidate>
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div id="add-blog-wrapper" class="hide-content">
+        @Html.Partial("Partials/_Editor")
+    </div>
+</form>
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            var id = @Html.Raw(Json.Encode(Model));
+            angular.element(document.getElementById('BlogContainer')).scope().getCategories(true, id);
+            angular.element(document.getElementById('BlogContainer')).scope().showFooter();
+            @Html.Partial("_PartialScripts/_HeadScripts");
+        });
+    </script>
+}

@@ -1,0 +1,44 @@
+﻿<!--<div class="header-background">
+    <i class="fa fa-list-alt"></i>
+    <span ng-bind="'Suggested Articles'">
+    </span>
+</div>-->
+
+<div class="row collapse suggested-article content">
+    <article class="post small-12 column" ng-repeat="suggestedBlog in listOfSuggestedBlogs">
+        <a href="{{getSingleBlogLink(suggestedBlog.ID , suggestedBlog.Title)}}"
+           class="blog-title-formatting"
+           title="{{suggestedBlog.Title}}"
+           target="_self">
+            <img itemprop="image"
+                 ng-src="{{suggestedBlog.ImageLinks.FullImageLink | searchResultImg}}"
+                 alt="{{suggestedBlog.Title}}"
+                 target="_self" />
+        </a>
+
+        <div class="content">
+            <a href="{{getSingleBlogLink(suggestedBlog.ID, suggestedBlog.Title)}}"
+               class="blog-title-formatting"
+               title="{{suggestedBlog.Title}}"
+               ng-bind-html="(suggestedBlog.Title | BlogTitleFormat)"
+               itemprop="headline"
+               target="_self">
+            </a>
+
+            <div class="blog-content-formatting text-justify">
+                <p ng-bind-html="suggestedBlog.Content | limitTo:200 | BlogContentFormat"></p>
+            </div>
+        </div>
+
+        <p>
+            <a itemprop="url"
+               href="{{getSingleBlogLink(suggestedBlog.ID, suggestedBlog.Title)}}"
+               class="read-more"
+               target="_self">
+                Read more &rarrlp;
+            </a>
+        </p>
+        <div class="content-divider" ng-hide="$last"></div>
+    </article>
+</div>
+

@@ -1,0 +1,25 @@
+﻿
+<div class="header-background">
+    <i class="fa fa-folder-open"></i>
+    <span ng-bind="'Categories'">
+    </span>
+</div>
+
+<div class="row">
+    <div class="large-12 column">
+        <div class="row collapse">
+            <div class="large-12 column main-category">
+                <section>
+                    <ul>
+                        <li ng-repeat="category in categoryList">
+                            <a ng-href="category/{{formatForUrl(category.Name)}}"
+                               ng-bind="category.Name"
+                               ng-class="getClassForCategoryLink(category.Name)">
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

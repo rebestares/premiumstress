@@ -1,0 +1,18 @@
+﻿<div class="row" ng-controller="UserController" ng-init="getAllUsers()">
+    <div class="large-12 column margin-handler outer-panel">
+
+        <h2>Delete User</h2>
+        <div class="margin-handler"> 
+            <generic-table list="allUsersList"
+                           header='["ID","Name","Date Joined","Email"]'
+                           columns='[
+                           [{"model":"vm.ID"}],
+                           [{"model":"vm.Fullname", "rowClass" : "text-justify" }],
+                           [{"model":"vm.DateJoined"}],
+                           [{"model":"vm.Email"}]
+                          ]'>
+            </generic-table>
+        </div>
+
+    </div>
+</div>

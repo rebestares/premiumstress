@@ -1,0 +1,82 @@
+﻿
+<div ng-controller="BlogController">
+    <div class="row">
+        <div class="large-12 column">
+            <h4 class="text-center">All Blog Posts</h4>
+        </div>
+    </div>
+
+    <div class="row all-blogpost-table" ng-init="getBlogs(1,'settings')">
+        <div class="row collapse">
+            <div class="large-12 columns margin-handler">
+                <div class="row collapse margin-handler-alert">
+                    <div class="large-11 small-9 columns">
+                        <input type="text"
+                               ng-model="searchedWord"
+                               placeholder="Search Blog"
+                               ng-keypress="($event.which === 13)?findBlogs(searchedWord,currentPageNum,'settings'):0"></input>
+                    </div>
+                    <div class="large-1 small-3 columns">
+                        <div href="#"
+                             class="alert button tiny search-button"
+                             ng-click="findBlogs(searchedWord,currentPageNum,'settings')"">Search</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row collapse">
+            <div class="large-2 columns">
+                <label>
+                    Sort Property
+                    <select ng-model="sortPropertyDropDown.selectedOption"
+                            ng-options="option.name for option in sortPropertyDropDown.availableOptions track by option.id"></select>
+                </label>
+            </div>
+            <div class="large-2 columns">
+                <label>
+                    Sort Order
+                    <select ng-model="sortOrderDropDown.selectedOption"
+                            ng-options="option.name for option in sortOrderDropDown.availableOptions track by option.id"></select>
+                </label>
+            </div>
+        </div>
+
+        <div class="row collapse">
+            <div class="large-2 column">
+                <div ng-click="sortItems(sortPropertyDropDown.selectedOption.id,sortOrderDropDown.selectedOption.id)" class="button tiny radius">Sort</div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="preloader" id="Loading-container">
+                <div class="text-center">Loading...</div>
+            </div>
+        </div>
+        <div class="row">
+            <generic-table
+                list ='listOfBlogs'
+                header='["ID","Title","Author","Date Posted","Total Views","Publish","Published"]'
+                columns='[
+                           [{"model":"vm.ID"}],
+                           [{"model":"vm.Title", "rowClass" : "text-justify",
+                                "link":[{"linkFunction":"getSingleBlogLink(vm.ID , vm.Title)", "class" : "text-center"}]}],
+                           [{"model":"vm.User.Fullname"}],
+                           [{"model":"vm.DatePosted"}],
+                           [{"model":"vm.ViewCount" ,"rowClass" : "text-center"}],
+                           [{"icon":"withApproval", "rowClass" : "text-center"}],
+                           [{"icon":"approvalStatus", "rowClass" : "text-center"}]
+                          ]'
+            >
+            </generic-table>
+
+            <!--Pagination-->
+            <div ng-hide="!listOfBlogs.length">
+                <div data-ng-include="'Template/Pagination.html'"></div>
+                <div class="content-divider show-for-small-only"></div>
+            </div>
+        </div>
+    </div>
+</div>

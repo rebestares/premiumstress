@@ -1,0 +1,159 @@
+﻿    <!--Blogs-->
+<div class="outer-panel">
+    <!--Loading-->
+    <div class="preloader" id="blog-loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+
+    <!--Blog list wrapper-->
+    <div class="hide-content blog-list-wrapper">
+        <!--Archives Page header-->
+        <div ng-show="forPagingTag.TagName" class="main-heading">
+            <div class="header-background text-center">
+                <span ng-bind="forPagingTag.TagName | uppercase"></span>
+                <span ng-bind="' TAG'" class="unselectable"></span>
+            </div>
+        </div>
+
+        <!--Category Page header-->
+        <div ng-show="withCategory.WithCategory" class="main-heading">
+            <div class="header-background text-center">
+                <span ng-bind="withCategory.CategoryName | uppercase |replaceToSpace"></span>
+                <span ng-bind="' CATEGORY'" class="unselectable"></span>
+            </div>
+        </div>
+
+        <!--User Page header-->
+        <div ng-show="isUserPage.WithUser" class="main-heading">
+            <div class="header-background text-center">
+                <span ng-bind="'All Posts from ' + isUserPage.AuthorName | uppercase |replaceToSpace"></span>
+            </div>
+        </div>
+
+        <!--All Posts header-->
+        <div>
+            <div class="recent-post">
+                <div ng-cloak
+                     class="header-background text-center unselectable"
+                     ng-bind="'All Posts'" ng-hide="forPagingTag.TagName || withCategory.WithCategory || isUserPage.WithUser"></div>
+            </div>
+        </div>
+
+        <!--Start of blog lists-->
+        <div class="ad-block" ng-repeat="blog in listOfBlogs">
+            <div itemscope itemtype="http://schema.org/BlogPosting">
+
+                <article class="content row" data-equalizer>
+                    <!--Date published-->
+                    <div class="medium-1 columns show-for-medium-up text-center">
+                        <div itemprop="datePublished" datetime="{{blog.DatePosted}}" class="date-posted margin-handler unselectable">
+                            <div ng-bind="getDate(blog.DatePosted)" class="text-center" style="font-size: 1.5rem">31</div>
+                            <div ng-bind="getMonth(blog.DatePosted)" class="text-center">Sep</div>
+                        </div>
+                    </div>
+
+                    <!--User Details & Category-->
+                    <div class="medium-3 small-4 columns article-margin" data-equalizer-watch>
+                        <a href="{{getSingleBlogLink(blog.ID , blog.Title)}}"
+                           class="blog-title-formatting"
+                           target="_self"
+                           title="{{blog.Title}}">
+
+                            <!--Article picture-->
+                            <img itemprop="image" target="_self" ng-src="{{blog.ImageLinks.FullImageLink | searchResultImg}}" alt="{{blog.Title}}" />
+
+                        </a>
+
+                        <!--User information-->
+                        <div class="item-details">
+                            <div class="blog-user-info">
+                                <span><i class="fi-torso"></i></span>
+                                <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}">
+                                    <span itemprop="author" ng-bind="blog.User.Fullname"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="blog-category">
+                            <span> <i class="fi-folder"></i></span>
+                            <a href="{{getCategoryLink(blog.Category.Name)}}">
+                                <span ng-bind="blog.Category.Name"></span>
+                            </a>
+                        </p>
+                        <div itemprop="datePublished" datetime="{{blog.DatePosted}}" class="date-posted margin-handler hide-for-medium-up">
+                            <div ng-bind="getDate(blog.DatePosted)" style="font-size: 1.5rem"></div>
+                            <div ng-bind="getMonth(blog.DatePosted)"></div>
+                        </div>
+                    </div>
+
+                    <!--Blog Details-->
+                    <div class="medium-8 small-8 columns article-margin" data-equalizer-watch>
+                        <!--Blog Title-->
+                        <a href="{{getSingleBlogLink(blog.ID, blog.Title)}}"
+                           class="blog-title-formatting"
+                           title="{{blog.Title}}"
+                           target="_self"
+                           itemprop="headline"
+                           ng-bind-html="(blog.Title | BlogTitleFormat)">
+                        </a>
+
+                        <!--Blog content-->
+                        <div class="blog-content-formatting text-justify">
+                            <p itemprop="articleBody" ng-bind-html="blog.Content | BlogContentFormat"></p>
+                        </div>
+
+                        <!--Read more-->
+                        <p class="text-right">
+                            <a itemprop="url"
+                               href="{{getSingleBlogLink(blog.ID, blog.Title)}}"
+                               target="_self">
+                                Read more &rarrlp;
+                            </a>
+                        </p>
+
+                        <!--Keywords-->
+                        <div class="hide-for-small">
+                            <span ng-repeat="keyword in blog.Keywords" class="badge">
+                                <a href="tag/{{formatForUrl(keyword)}}">
+                                    <i class="fa fa-tag"></i>
+                                    <span ng-bind="keyword"></span>
+                                </a>
+                            </span>
+                        </div>
+
+                    </div>
+                </article>
+                <div class="content-divider"></div>
+            </div>
+        </div>
+        <!--Pagination-->
+        <div ng-hide="!listOfBlogs.length">
+            <div data-ng-include="'Template/Pagination.html'"></div>
+        </div>
+    </div>
+
+    <!--No blog found header-->
+    <div class="row collapse blog-list-wrapper hide-content" ng-hide="listOfBlogs.length">
+        <div class="large-12 columns">
+            <div class="no-blog-found">
+                <h3 ng-bind="'No blog found'"></h3>
+                <div>
+                    <a href="/" class="button tiny margin-handler ghost-button">Back to Blogs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tags, Popular Post and Suggested Article for medium and small-->
+<div class="row collapse">
+    <div class="large-12 columns show-for-medium-down categories">
+        <div class="row">
+            <div class="large-12 column outer-panel">
+                <!--<header-sidebar title="Category" is-collapsed="true"></header-sidebar>-->
+                <header-sidebar title="Tags" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Popular Posts" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Suggested Articles" is-collapsed="true"></header-sidebar>
+            </div>
+        </div>
+    </div>
+</div>

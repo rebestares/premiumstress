@@ -1,0 +1,20 @@
+﻿<div class="row" ng-controller="UserController" ng-init="getAllUsers()">
+    <div class="large-12 column margin-handler outer-panel">
+        <div class="user-table">
+
+            <h2>Edit User</h2>
+            <div class="margin-handler">
+                <generic-table list="allUsersList"
+                               header='["ID","Name","Date Joined","Email"]'
+                               columns='[
+                           [{"model":"vm.ID"}],
+                           [{"model":"vm.Fullname", "rowClass" : "text-justify",
+                                "link":[{"clickFunction" : "getUserProfile(vm.ID)", "class" : "text-center"}]}],
+                           [{"model":"vm.DateJoined"}],
+                           [{"model":"vm.Email"}]
+                          ]'>
+                </generic-table>
+            </div>
+        </div>
+    </div>
+</div>

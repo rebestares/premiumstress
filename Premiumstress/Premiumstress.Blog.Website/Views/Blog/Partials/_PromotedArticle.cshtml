@@ -1,0 +1,57 @@
+﻿<div class="medium-12 large-12 columns margin-handler">
+    <div class="row outer-panel">
+        <div class="small-12 columns">
+            <h2 class="header-background">Promoted Article</h2>
+
+            <article>
+
+                <a href="{{getSingleBlogLink(promotedBlog.ID , promotedBlog.Title)}}"
+                   class="blog-title-formatting"
+                   title="{{promotedBlog.Title}}">
+                    <img itemprop="image" ng-src="{{promotedBlog.ImageLinks.FullImageLink | searchResultImg}}" alt="" />
+                </a>
+
+
+                <div class="content margin-handler">
+                    <a href="{{getSingleBlogLink(promotedBlog.ID, promotedBlog.Title)}}" class="blog-title-formatting" title="{{blog.Title}}">
+                        <h2 itemprop="headline" ng-bind-html="(promotedBlog.Title | BlogTitleFormat)"></h2>
+                    </a>
+
+                    <span class="blog-user-info">
+                        <span><i class="fi-torso"></i></span>
+                        <a href="{{getUserLink(promotedBlog.User.FirstName+Blog.User.LastName,promotedBlog.User.ID)}}">
+                            <span itemprop="author" ng-bind="promotedBlog.User.FirstName +' '+ promotedBlog.User.LastName"></span>
+                        </a>
+                    </span>
+
+                    <span class="blog-category">
+                        <span> <i class="fi-folder"></i></span>
+                        <a href="{{getCategoryLink(promotedBlog.Category.Name)}}">
+                            <span ng-bind="promotedBlog.Category.Name"></span>
+                        </a>
+                    </span>
+
+                    <span class="blog-date-posted">
+                        <span> <i class="fi-calendar"></i></span>
+                        <span itemprop="datePublished"
+                              ng-bind="promotedBlog.DatePosted"
+                              class="date-posted">
+                        </span>
+                    </span>
+
+                    <div class="blog-content-formatting">
+                        <p itemprop="articleBody" ng-bind-html="promotedBlog.Content | limitTo:1000 | BlogContentFormat"></p>
+                    </div>
+
+                    <a itemprop="url"
+                       href="{{getSingleBlogLink(promotedBlog.ID, promotedBlog.Title)}}">
+                        Read more &rarrlp;
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+</div>

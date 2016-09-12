@@ -1,0 +1,123 @@
+﻿<div class="row" ng-controller="BlogController" ng-init="getBlogs(1,'settings')">
+    <div class="large-12 column margin-handler outer-panel">
+        <h2>Edit Article</h2>
+        <div class="row">
+            <div class="large-12 column">
+                <form name="addBlogForm" id="BlogContainer" ng-init="$setDirty()" ng-submit="editBlogPost(true)" method="post" enctype="multipart/form-data" novalidate>
+                    <div class="row">
+                        <div class="large-12 alert columns alert-holder">
+                        </div>
+                    </div>
+                    <div class="row collapse margin-handler hide" id="article-edit">
+                        <div class="large-12 column">
+                            <div class="row">
+                                <div class="large-7 medium-8 small-12 columns">
+                                    <label>
+                                        Title
+                                        <input type="text" placeholder="Title" ng-required="true" ng-model="blog.Title" ng-value="blog.Title" name="title" maxlength="150"/>
+                                    </label>
+                                </div>
+                                <div class="large-5 medium-4 small-12 columns ">
+                                    <label>
+                                        Category
+                                        <select data-ng-options="category.Name for category in categoryList" ng-model="blog.Category"></select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns ">
+                                    <label>
+                                        Upload Image For Blog
+                                        <input type="file" name="file" custom-on-change="uploadFile" ng-disabled="transactionInProgress"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    Content
+                                    <div class="add-content-holder">
+                                        <div>
+                                            <text-angular ng-model="htmlVariable" ng-required="true" name="blogContent" text-angular-name="addBlogContent"></text-angular>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <label>
+                                        Video
+                                        <input type="text" placeholder="Video Link" ng-model="blog.VideoLink" ng-value="blog.VideoLink" name="videoLink"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <label>
+                                        Keywords
+                                        <input type="text" placeholder="Keywords" ng-model="blog.Keywords" ng-value="blog.Keywords" name="keywords"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <div class="button-bar">
+                                        <ul class="button-group">
+                                            <li>
+                                                <input type="button" ng-disabled="transactionInProgress" ng-click="backToEdit()" class="tiny button" value="Back"/>
+                                            </li>
+                                            <li>
+                                                <input type="submit" ng-disabled="transactionInProgress" class="tiny button add-blog" value="Save"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 column">
+                <div class="row all-blogpost-table collapse">
+                    <div class="large-12 column">
+                        <div class="row collapse">
+                            <div class="large-12 columns margin-handler">
+                                <div class="row collapse margin-handler-alert">
+                                    <div class="large-12 column">
+                                        <input type="text"
+                                               ng-model="searchedWord"
+                                               placeholder="Search Blog"
+                                               ng-keypress="($event.which === 13)?findBlogs(searchedWord,currentPageNum,'settings'):0"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <generic-table list="listOfBlogs"
+                                       header='["ID","Title","Author","Date Posted","Total Views"]'
+                                       columns='[
+                           [{"model":"vm.ID"}],
+                           [{"model":"vm.Title", "rowClass" : "text-justify",
+                                "link":[{"clickFunction" : "editArticle(vm.ID)", "class" : "text-center"}]}],
+                           [{"model":"vm.User.Fullname"}],
+                           [{"model":"vm.DatePosted"}],
+                           [{"model":"vm.ViewCount" ,"rowClass" : "text-center"}]
+                          ]'>
+                        </generic-table>
+
+
+
+                        <!--Pagination-->
+                        <div ng-hide="!listOfBlogs.length">
+                            <div data-ng-include="'Template/Pagination.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

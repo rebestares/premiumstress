@@ -1,0 +1,28 @@
+﻿<div class="content active" id="panel1">
+    <section class="tab-title active">
+        <h5 class="title"><a href="#panel1">Contact Us</a></h5>
+        <div class="content" data-slug="panel1">
+            <form ng-submit="sendEmailToAdmin()">
+                <div class="row collapse">
+                    <div class="large-2 columns">
+                        <label class="inline">Your Name</label>
+                    </div>
+                    <div class="large-10 columns">
+                        <input type="text" ng-model="email.Name" placeholder="John Doe" required>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="large-2 columns">
+                        <label class="inline"> Your Email</label>
+                    </div>
+                    <div class="large-10 columns">
+                        <input type="text" ng-model="email.Email" placeholder="johndoe@seven.com" required>
+                    </div>
+                </div>
+                <label>What's up?</label>
+                <textarea rows="4" ng-model="email.Body" required></textarea>
+                <button type="submit" class="tiny button" ng-disabled="transactionInProgress">Submit</button>
+            </form>
+        </div>
+    </section>
+</div>

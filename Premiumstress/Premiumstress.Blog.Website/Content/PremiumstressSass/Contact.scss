@@ -1,0 +1,56 @@
+﻿@import "../FoundationSass/foundation/components/_global.scss";
+@import "Globals.scss";
+
+h4{
+    font-size: 1.3rem !important;
+    font-weight:bold;
+}
+
+/*.content-divider{
+    border-color: darkgray !important;
+}*/
+
+.specific-person {
+    img {
+        width: auto;
+    }
+
+    a {
+        color: scale-color($info-color, $lightness: -14%) !important;
+    }
+
+    a:hover {
+        color: $info-color !important;
+    }
+
+    margin-bottom: 202px;
+}
+
+.margin-handler-contact {
+    margin-top: 55px;
+    margin-bottom: 200px;
+}
+
+@media #{$small-only} {
+    .contact-margin-handler {
+        margin-top: 60px;
+    }
+
+    .margin-handler-contact {
+        margin-top: 65px !important;
+        margin-bottom: 0;
+    }
+
+    .specific-person {
+        img {
+            width: 150px;
+        }
+    }
+}
+
+@media #{$medium-only} {
+    .margin-handler-contact {
+        margin-top: 25px !important;
+        margin-bottom: 0;
+    }
+}

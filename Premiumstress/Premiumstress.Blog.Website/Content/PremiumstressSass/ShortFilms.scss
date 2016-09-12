@@ -1,0 +1,51 @@
+﻿.short-film-card {
+    border: 1px solid #000;
+    margin-bottom: 1.5rem;
+    font-family: Source Sans Pro, sans-serif, Verdana;
+
+    .card-content {
+        margin: 1.25rem;
+
+        .post-author {
+            text-align: center;
+        }
+
+        h4 {
+            color: #CF000F;
+        }
+
+        h2 {
+            font-family: archivoblack-webfont,Source Sans Pro,sans-serif,Verdana;
+            font-size: 1.3rem;
+            font-weight: bold;
+            line-height: 1.7rem;
+            margin-bottom: 0.7rem;
+            word-wrap: break-word;
+        }
+
+        p {
+            color: #222;
+        }
+
+        a {
+            color: #23958a;
+            font-weight: bold;
+        }
+
+        i {
+            font-weight: 300;
+            color: #222;
+            margin: 0 .5rem;
+            padding: 5px 7px 5px 7px;
+            border: 1px solid #757D75;
+            border-radius: 50%;
+        }
+
+        img.post-icon {
+            position: absolute;
+            width: 3rem;
+            border-radius: 50%;
+            margin-top: -3rem;
+        }
+    }
+}

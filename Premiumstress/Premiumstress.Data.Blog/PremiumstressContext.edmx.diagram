@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05fc069a261c49d8b1e451788bb505c2" Name="Diagram1">
+        <EntityTypeShape EntityType="Premiumstress.Data.Blog" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.BlogCategory" Width="1.5" PointX="8" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.BlogComment" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.BlogCommentReply" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.BlogVideo" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Category" Width="1.5" PointX="5.375" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Food" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Imagelink" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Keyword" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Location" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Picture" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Place" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Post" Width="1.5" PointX="7.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.PostComment" Width="1.5" PointX="9.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.ShortFilm" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.ShortFilmCategory" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.User" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Video" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Premiumstress.Data.Setting" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="Premiumstress.Data.FK_Blog_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_BlogCategory_Blog" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_BlogComment_Blog" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_BlogVideos_Blog" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_BlogCategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_BlogCommentReply_BlogComment" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_ShortFilm_Imagelinks" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_Post_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_PostComment_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_PostComment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.FK_ShortFilmCategory_ShortFilm" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.BlogImage" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.BlogKeywords" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.ShortFilmImage" ManuallyRouted="false" />
+        <AssociationConnector Association="Premiumstress.Data.UserImage" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

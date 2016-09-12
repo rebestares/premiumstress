@@ -1,0 +1,50 @@
+﻿<div class="row comment-section">
+    <div class="large-12 columns">
+        <div class="alert-holder-add-comment">
+        </div>
+        <form name="addCommentForm" ng-submit="addComment()">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>
+                        Name<span class="required-field-color">*</span>
+                        <input type="text" placeholder="Name" ng-model="commenter.Name" ng-value="commenter.Name" name="name" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>
+                        Email<span class="required-field-color">*</span>
+                        <input type="email" placeholder="Email" name="email"
+                               ng-model="commenter.Email" ng-value="commenter.Email" required/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>
+                        Website
+                        <input type="text" placeholder="Website" name="website"
+                               ng-model="commenter.Website" ng-value="commenter.Website"/>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>
+                        Comment<span class="required-field-color">*</span>
+                        <div
+                            contenteditable="true"
+                            id="blogComment"
+                            ng-model="commenter.Comment">
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <input type="submit" class="button tiny" value="Submit"/>
+            </div>
+        </form>
+        <h2 class="margin-handler">Comments</h2>
+    </div>
+</div>

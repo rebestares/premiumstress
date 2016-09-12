@@ -1,0 +1,252 @@
+﻿@{
+    var blogFromModel = ViewData.Model;
+    var urlForImageLink = "http://www.premiumstress.com" + blogFromModel.ImageLinks.FullImageLink;
+    var urlForBlogLink = "http://www.premiumstress.com/blog/article/" + blogFromModel.ID + "/" + blogFromModel.Title.Replace(' ', '-').ToLower();
+    var twitterHandle = "@PremiumStress";
+}
+
+@section head{
+    <meta property="og:url" content="@urlForBlogLink" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@blogFromModel.Title" />
+    <meta property="og:description" content="@blogFromModel.Content" />
+    <meta property="og:image" content="@urlForImageLink" />
+    <meta property="og:site_name" content="PremiumStress" />
+    <meta property="fb:app_id" content="1630369943901318" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@twitterHandle" />
+    <meta name="twitter:title" content="@blogFromModel.Title" />
+    <meta name="twitter:description" content="@blogFromModel.Content" />
+    <meta name="twitter:image" content="@urlForImageLink" />
+}
+
+<div class="row collapse" data-ng-controller="BlogController" id="BlogContainer">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div class="row collapse hide-content" id="view-wrapper">
+        <!-- Main Blog Cntent -->
+        <div class="large-12 column main-article">
+            <div class="row">
+                <div class="large-9 aside-right columns margin-handler"
+                     role="content">
+                    <div class="row collapse">
+                        <div class="large-12 outer-panel columns">
+                            <div id="blogModalConfirmation" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                                <a class="close-reveal-modal-success" aria-label="Close" ng-click="onConfirmNo()">&#215;</a>
+                                <h2 id="modalTitle" ng-bind-html="deleteStatus">Success!</h2>
+                                <p class="lead" ng-bind="blogModalMessage">You have successfully updated categories.</p>
+                                <ul class="button-group" ng-hide="userChose">
+                                    <li>
+                                        <input type="button" class="tiny button" value="Yes" ng-click="onConfirmYes()" />
+                                    </li>
+                                    <li>
+                                        <input type="button" class="tiny button" value="No" ng-click="onConfirmNo()" />
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="alertbox-container">
+
+                            </div>
+
+                            <div ng-hide="blog">
+                                <h3 ng-bind="'No Blog Entry Found'"></h3>
+                                <a href="#" class="button small" ng-click="goToBlog()">Back to Blogs</a>
+                            </div>
+                            <div itemscope itemtype="http://schema.org/BlogPosting">
+                                <div class="large-12 columns">
+                                    @*<div ng-show="blog.IsOwner">
+                                        <i class="fi-wrench icon-style" ng-click="goToEdit(blog.ID,blog.Title)"> Edit</i>
+                                        <i class="fi-trash icon-style" ng-click="deleteBlog()"> Delete</i>
+                                        <i class="fa fa-comment icon-style" ng-click="promoteBlog(blog.ID)"> Promote</i>
+                                        <i class="fa fa-lightbulb-o icon-style"> Suggest</i>
+                                    </div>*@
+                                    <article ng-show="blog" class="content single-blog-formatting">
+                                        <div class="row">
+                                            <div class="large-12 columns">
+
+                                                <h1 itemprop="headline">@blogFromModel.Title</h1>
+
+                                                <div class="article-subheader">
+
+
+                                                    <p>
+                                                        <span class="blog-user-info">
+                                                            <span><i class="fi-torso"></i></span>
+                                                            <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}" target="_self">
+                                                                <span itemprop="author" ng-bind="blog.User.Fullname"></span>
+                                                            </a>
+                                                        </span>
+
+                                                        <span class="blog-category">
+                                                            <span> <i class="fi-folder"></i></span>
+                                                            <a href="{{getCategoryLink(blog.Category.Name)}}" target="_self">
+                                                                <span ng-bind="blog.Category.Name"></span>
+                                                            </a>
+                                                        </span>
+
+                                                        <span class="blog-date-posted">
+                                                            <span> <i class="fi-calendar"></i></span>
+                                                            <span itemprop="datePublished"
+                                                                  content="@blogFromModel.DatePosted"
+                                                                  class="date-posted">
+                                                                @blogFromModel.DatePosted
+                                                            </span>
+                                                        </span>
+
+                                                        <div>
+                                                            <span ng-hide="!blog.Keywords.length"></span>
+                                                            <span ng-repeat="keyword in blog.Keywords" class="badge">
+                                                                <a href="tag/{{formatForUrl(keyword)}}" target="_self">
+                                                                    <i class="fa fa-tag"></i>
+                                                                    <span ng-bind="keyword"></span>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row collapse">
+                                            <div class="large-12 columns">
+                                                <img itemprop="image" ng-src="{{blog.ImageLinks.FullImageLink}}" class="blog-image" ng-cloak />
+                                            </div>
+                                        </div>
+
+                                        <div class="row collapse">
+                                            <div class="large-12 columns">
+
+                                                <div class="row">
+                                                    <div class="large-12 columns">
+                                                        @*Content of article*@
+                                                        <div class="row collapse">
+                                                            <div class="small-push-0 large-12 small-12">
+                                                                <div class="single-blog-content margin-handler left-align"
+                                                                     itemprop="articleBody"
+                                                                     ng-bind-html="blog.Content">
+                                                                </div>
+                                                                <div ng-if="hasVideoLink">
+                                                                    <div class="flex-video">
+                                                                        <iframe width="420" height="315" ng-src="{{blog.VideoLink | trusted}}" frameborder="0" allowfullscreen></iframe>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        @*ADS FOR GOOGLE*@
+                                                        @*<div class="row collapse">
+                                                                <div class="large-12 columns">
+                                                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                                     leaderboard
+                                                                    <ins class="adsbygoogle"
+                                                                         style="display: inline-block; height: 90px; width: 728px;"
+                                                                         data-ad-client="ca-pub-4689506079033489"
+                                                                         data-ad-slot="2167668746">
+                                                                    </ins>
+                                                                    <script>
+                                                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                                                    </script>
+                                                                </div>
+                                                            </div>*@
+
+
+                                                        <br />
+                                                        <div class="row collapse user">
+                                                            <div class="large-12 columns">
+                                                                <h2 ng-bind="'About the author'" class="header-background text-center"></h2>
+                                                                <div class="row collapse">
+                                                                    <div class="large-2 small-2 columns">
+                                                                        <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}" class="text-center">
+                                                                            <img alt="person" class="author"
+                                                                                 ng-src="{{blog.User.ImageLinks.ThumbnailImageLink | searchResultImg}}">
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="large-10 small-10 columns">
+
+                                                                        <div ng-bind-html="blog.User.About" class="text-center about"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="content-divider margin-handler"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br />
+                                                        <br />
+
+                                                        @*Social Networking Buttons*@
+                                                        @*<ul class="inline-list">
+                                                                <li>
+                                                                    <div class="fb-share-button" data-href="@urlForBlogLink" data-layout="box_count"></div>
+                                                                </li>
+                                                                <li>
+                                                                    <div>
+                                                                        <a class="twitter-share-button"
+                                                                           href="@urlForBlogLink"
+                                                                           data-counturl="@urlForBlogLink"
+                                                                           data-count="vertical">
+                                                                            Tweet
+                                                                        </a>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>*@
+
+
+                                                        <h2>Leave a reply</h2>
+                                                        @*@Html.Partial("Partials/_CommentSection")*@
+                                                        <div id="comments">
+                                                            <div id="disqus_thread"></div>
+                                                        </div>
+                                                        @*<noscript>
+                                                                Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+                                                            </noscript>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            @*@Html.Partial("Partials/_Comments")*@
+                        </div>
+                        @*@Html.Partial("Partials/_BreakingNews")*@
+                    </div>
+                </div>
+
+                @*@Html.Partial("Partials/_SideBarLeft")*@
+                <div class="large-3 medium-12 columns margin-handler">
+                    <div class="row outer-panel ">
+                        <header-sidebar title="Category" is-collapsed="true" icon-style="fa-folder-open"></header-sidebar>
+                        <header-sidebar title="Suggested Articles" is-collapsed="true" icon-style="fa-list-alt"></header-sidebar>
+                        <header-sidebar title="Popular Posts" is-collapsed="true" icon-style="fa-star"></header-sidebar>
+                        <header-sidebar title="Tags" is-collapsed="true" icon-style="fa-tags"></header-sidebar>
+                        <header-sidebar title="Follow Us" is-collapsed="true" icon-style="fa-users"></header-sidebar>
+                        @*@Html.Partial("Partials/_RecentComments")*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main Content -->
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            var blog = @Html.Raw(Json.Encode(Model));
+            angular.element(document.getElementById('BlogContainer')).scope().getSocialCounts();
+            angular.element(document.getElementById('BlogContainer')).scope().getCategories();
+            angular.element(document.getElementById('BlogContainer')).scope().getSingleBlog(blog.ID, false);
+            angular.element(document.getElementById('BlogContainer')).scope().getFeatured();
+            angular.element(document.getElementById('BlogContainer')).scope().getSuggestedBlogs(3,blog.ID);
+            angular.element(document.getElementById('BlogContainer')).scope().getTags();
+            angular.element(document.getElementById('BlogContainer')).scope().redirectLinks(true);
+            @Html.Partial("_PartialScripts/_HeadScripts");
+        });
+    </script>
+}

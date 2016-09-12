@@ -1,0 +1,31 @@
+﻿<div class="row comment-container">
+    <div class="large-10 large-push-1
+                medium-push-0
+                small-12 small-push-0 columns">
+        <!-- COMMENT -->
+        <div class="comment" ng-repeat="comments in blog.Comments">
+            <section class="top">
+                <h6 class="byline">
+                    <i class="icon"></i><a ng-href="http://{{comments.Website}}" ng-bind="comments.Name"></a>
+                    <small>
+                        said
+                        <span class="data" ng-bind="comments.DatePosted | timeSince">
+                        </span>
+                        ago
+                    </small>
+                </h6>
+            </section>
+            <section class="content">
+                <div class="comment-body" ng-bind-html="comments.Comment"></div>
+            </section>
+            @*<section class="actions">
+
+                <ul class="inline-list">
+                    <li><a href="#">Like</a></li>
+                    <li><a href="#">Reply</a></li>
+                </ul>
+
+            </section>*@
+        </div>
+    </div>
+</div>

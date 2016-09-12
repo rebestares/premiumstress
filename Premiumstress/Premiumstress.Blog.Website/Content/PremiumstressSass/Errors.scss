@@ -1,0 +1,30 @@
+﻿@import "../FoundationSass/foundation/components/_global.scss";
+@import "Globals.scss";
+
+.error-container {
+    a {
+        color: scale-color($info-color, $lightness: -14%);
+    }
+
+    a:hover {
+        color: $info-color;
+    }
+
+    .error-margin-handler-header {
+        margin-top: 150px;
+    }
+
+    .error-not-found {
+        color: $alert-color;
+        font-size: 55px;
+    }
+
+    margin-bottom: 150px;
+}
+
+
+@media #{$small-only} {
+    .error-container {
+        margin-bottom: 50px;
+    }
+}

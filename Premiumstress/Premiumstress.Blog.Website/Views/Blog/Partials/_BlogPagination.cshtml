@@ -1,0 +1,64 @@
+﻿
+@*For Medium and Up*@
+<ul class="pagination hide-for-small" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak ng-show="blogContentLoaded">
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow hide-for-medium-only' : 'arrow unavailable hide-for-medium-only'"
+        aria-disabled="true">
+        <a ng-href="{{getPageLink(1)}}"
+           ng-hide="currentPageNum == 1">
+            &laquo; First
+        </a>
+    </li>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a href="{{getPageLink(currentPageNum - 1)}}"
+           ng-hide="currentPageNum == 1">
+            &laquo; Previous
+        </a>
+    </li>
+    {{pageNumbers = getPageNumber(totalBlogs);""}}
+    <div ng-repeat="i in pageNumbers track by $index">
+        {{currentPageMarkUp=i;""}}
+        <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)">
+            <a ng-href="{{getPageLink(currentPageMarkUp)}}"
+               ng-bind="currentPageMarkUp">
+            </a>
+        </li>
+    </div>
+
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a href="{{getPageLink(currentPageNum + 1)}}"
+           ng-hide="currentPageNum == lastPage">
+            Next &raquo;
+        </a>
+    </li>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable hide-for-medium-only' : 'hide-for-medium-only arrow'">
+        <a ng-href="{{getPageLink(lastPage)}}"
+           ng-hide="currentPageNum == lastPage">
+            Last &raquo;
+        </a>
+    </li>
+</ul>
+@*For small only*@
+<ul class="pagination show-for-small-only" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a href="/Blog/Page/{{currentPageNum-1}}"
+           ng-hide="currentPageNum == 1">
+            &laquo; Previous
+        </a>
+    </li>
+    <div ng-repeat="i in getPageNumber(totalBlogs,1) track by $index">
+        {{currentPageMarkUp=i;""}}
+        <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)">
+            <a ng-href="{{getPageLink(currentPageMarkUp)}}"
+               ng-bind="currentPageMarkUp">
+            </a>
+        </li>
+    </div>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a href="{{getPageLink(currentPageNum + 1)}}"
+           ng-hide="currentPageNum == lastPage">
+            Next &raquo;
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,145 @@
+﻿<!--For Medium and Up-->
+<ul class="pagination hide-for-small" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak ng-show="blogContentLoaded">
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow hide-for-medium-only' : 'arrow unavailable hide-for-medium-only'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(1)}}"
+           ng-click="navigateBlog(1)"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-double-left"></i>
+            First
+        </a>
+    </li>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(currentPageNum - 1)}}"
+           ng-click="navigateBlog(currentPageNum - 1)"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-left"></i>
+            Previous
+        </a>
+    </li>
+
+    <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)"
+        ng-repeat="currentPageMarkUp in pageNumbers track by $index">
+
+        <a ng-href="{{buildPagingLink(currentPageMarkUp)}}"
+           ng-click="navigateBlog(currentPageMarkUp)"
+           ng-bind="currentPageMarkUp">
+        </a>
+
+    </li>
+
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a ng-href="{{buildPagingLink(currentPageNum + 1)}}"
+           ng-click="navigateBlog(currentPageNum + 1)"
+           ng-hide="currentPageNum == lastPage">
+            Next
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </li>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable hide-for-medium-only' : 'hide-for-medium-only arrow'">
+        <a ng-href="{{buildPagingLink(lastPage)}}"
+           ng-click="navigateBlog(lastPage)"
+           ng-hide="currentPageNum == lastPage">
+            Last
+            <i class="fa fa-angle-double-right"></i>
+        </a>
+    </li>
+</ul>
+<!--For small only-->
+<ul class="pagination show-for-small-only" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(currentPageNum-1)}}"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-left"></i>
+            Previous
+        </a>
+    </li>
+    <div ng-repeat="i in pageNumbers track by $index">
+        {{currentPageMarkUp=i;""}}
+        <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)">
+            <a ng-href="{{buildPagingLink(currentPageMarkUp)}}"
+               ng-bind="currentPageMarkUp">
+            </a>
+        </li>
+    </div>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a ng-href="{{buildPagingLink(currentPageNum + 1)}}"
+           ng-hide="currentPageNum == lastPage">
+            Next
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </li>
+</ul>
+
+
+
+<!--<ul class="pagination hide-for-small" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak ng-show="blogContentLoaded">
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow hide-for-medium-only' : 'arrow unavailable hide-for-medium-only'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(1)}}"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-double-left"></i>
+            First
+        </a>
+    </li>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(currentPageNum - 1)}}"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-left"></i>
+            Previous
+        </a>
+    </li>
+    {{pageNumbers = getPageNumber(totalBlogs);""}}
+    <div ng-repeat="i in pageNumbers track by $index">
+        {{currentPageMarkUp=i;""}}
+        <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)">
+            <a ng-href="{{buildPagingLink(currentPageMarkUp)}}"
+               ng-bind="currentPageMarkUp">
+            </a>
+        </li>
+    </div>
+
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a ng-href="{{buildPagingLink(currentPageNum + 1)}}"
+           ng-hide="currentPageNum == lastPage">
+            Next
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </li>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable hide-for-medium-only' : 'hide-for-medium-only arrow'">
+        <a ng-href="{{buildPagingLink(lastPage)}}"
+           ng-hide="currentPageNum == lastPage">
+            Last
+            <i class="fa fa-angle-double-right"></i>
+        </a>
+    </li>
+</ul>
+
+<ul class="pagination show-for-small-only" role="menubar" aria-label="Pagination" ng-show="withPaging" ng-cloak>
+    <li ng-class="(currentPageNum-1 != 0) ? 'arrow' : 'arrow unavailable'"
+        aria-disabled="true">
+        <a ng-href="{{buildPagingLink(currentPageNum-1)}}"
+           ng-hide="currentPageNum == 1">
+            <i class="fa fa-angle-left"></i>
+            Previous
+        </a>
+    </li>
+    <div ng-repeat="i in getPageNumber(totalBlogs,1) track by $index">
+        {{currentPageMarkUp=i;""}}
+        <li ng-class="getClassForPageNum(currentPageMarkUp,currentPageNum)">
+            <a ng-href="{{buildPagingLink(currentPageMarkUp)}}"
+               ng-bind="currentPageMarkUp">
+            </a>
+        </li>
+    </div>
+    <li ng-class="(currentPageNum+1 > totalPaging) ? 'arrow unavailable' : 'arrow'">
+        <a ng-href="{{buildPagingLink(currentPageNum + 1)}}"
+           ng-hide="currentPageNum == lastPage">
+            Next
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </li>
+</ul>-->

@@ -1,0 +1,17 @@
+﻿<div class="content medium-12 large-9 columns"
+     ng-swipe-right="goTo('/Blog/Page/'+(currentPageNum-1))">
+
+    <!--Categories navigation & tags for medium and small-->
+    <div class="row collapse" ng-hide="isUserPage.WithUser">
+        <div class="large-12 columns show-for-medium-down categories">
+            <div class="row">
+                <div class="large-12 category-bloglist column outer-panel">
+                    <header-sidebar title="Category" is-collapsed="true" icon-style="fa-folder-open"></header-sidebar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-include="'Template/Blog/BlogList/_Body.html'"></div>
+</div>
+

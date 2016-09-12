@@ -1,0 +1,158 @@
+﻿
+
+
+<div class="content medium-12 large-9 columns margin-handler"
+     ng-show="blogContentLoaded"
+     ng-swipe-right="goTo('/Blog/Page/'+(currentPageNum-1))">
+    <div class="outer-panel" ng-hide="!listOfBlogs.length">
+
+        <div ng-show="forPagingTag.TagName" class="main-heading">
+            <div class="header-background">
+                <span ng-bind="forPagingTag.TagName | uppercase"></span>
+                <span ng-bind="' ARCHIVES'"></span>
+            </div>
+        </div>
+
+        <div ng-show="withCategory.WithCategory" class="main-heading">
+            <div class="header-background">
+                <span ng-bind="withCategory.CategoryName | uppercase |replaceToSpace"></span>
+                <span ng-bind="' CATEGORY'"></span>
+            </div>
+        </div>
+
+        <div>
+            <div class="recent-post">
+                <div ng-cloak ng-show="currentPageNum == 1"
+                     class="header-background"
+                     ng-bind="'Recent Posts'" ng-hide="forPagingTag.TagName || withCategory.WithCategory"></div>
+            </div>
+        </div>
+
+        @*Start of Article*@
+        <div class="ad-block" ng-repeat="blog in listOfBlogs">
+            <div itemscope itemtype="http://schema.org/BlogPosting">
+                <article class="content row" data-equalizer>
+                    @*Picture goes here*@
+                    <div class="medium-4 small-4 columns article-margin" data-equalizer-watch>
+                        <a href="{{getSingleBlogLink(blog.ID , blog.Title)}}"
+                           class="blog-title-formatting"
+                           title="{{blog.Title}}">
+                            <img itemprop="image" ng-src="{{blog.ImageLinks.FullImageLink | searchResultImg}}" alt="{{blog.Title}}" />
+                        </a>
+                        <p class="subheader show-for-small-only theme-color">
+                            <span><i class="fi-torso"></i></span>
+                            <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}" ng-bind="blog.User.FirstName +' '+ blog.User.LastName"></a><br />
+                            <span ng-hide="!blog.Keywords.length">
+                            </span>
+                            
+                            <span class="blog-date-posted">
+                                <span> <i class="fi-calendar"></i></span>
+                                <span itemprop="datePublished" ng-bind="blog.DatePosted" class="date-posted"></span>
+                                <span ng-hide="!blog.Keywords.length">
+                                </span>
+                            </span>
+                        </p>
+                        @*<p class="subheader show-for-small-only">
+                            <span ng-hide="!blog.keywords.length">
+                                Tags :
+                            </span><br /> <span ng-repeat="keyword in blog.Keywords">
+                                <a href="{{getKeywordLink(keyword)}}">
+                                    <span ng-class-odd="'label'" ng-class-even="'label alert'" ng-bind="keyword"></span>
+                                </a>
+                            </span>
+                        </p>*@
+                    </div>
+                    @*Content goes here*@
+                    <div class="medium-8 small-8 columns article-margin" data-equalizer-watch>
+                        <a href="{{getSingleBlogLink(blog.ID, blog.Title)}}" class="blog-title-formatting" title="{{blog.Title}}">
+                            <h2 itemprop="headline" ng-bind-html="(blog.Title | BlogTitleFormat)"></h2>
+                        </a>
+                        @*
+                            User info and date posted
+                        *@
+                        <p class="subheader theme-color hide-for-small-only">
+                            <span class="blog-user-info">
+                                <span><i class="fi-torso"></i></span>
+                                <a href="{{getUserLink(blog.User.FirstName+Blog.User.LastName,blog.User.ID)}}">
+                                    <span itemprop="author" ng-bind="blog.User.FirstName +' '+ blog.User.LastName"></span>
+                                </a>
+                            </span>
+                            <span class="blog-date-posted">
+                                <span> <i class="fi-calendar"></i></span>
+                                <span itemprop="datePublished" ng-bind="blog.DatePosted" class="date-posted"></span>
+                                <span ng-hide="!blog.Keywords.length">
+                                </span>
+                            </span>
+
+                            @*<span class="blog-comment-posted">
+                                    <span> <i class="fi-comments"></i></span>
+                                    <a href="{{getUrlForDisqus(blog.ID,blog.Title)}}" class="disqus-comment-count" ></a>
+                                    <span ng-hide="!blog.Keywords.length">
+                                    </span>
+                                </span>*@
+                        </p>
+                        <p class="subheader hide-for-small-only">
+                            <span ng-hide="!blog.keywords.length">
+
+                            </span>
+                            <i class="fi-pricetag-multiple theme-color"></i>
+                            <span ng-repeat="keyword in blog.Keywords">
+                                <a href="{{getKeywordLink(keyword)}}">
+                                    <span ng-class-odd="'label'" ng-class-even="'label alert'" ng-bind="keyword"></span>
+                                </a>
+                            </span>
+                        </p>
+                        <div class="blog-content-formatting">
+                            <p itemprop="articleBody" ng-bind-html="blog.Content | BlogContentFormat"></p>
+                        </div>
+                        <a itemprop="url"
+                           href="{{getSingleBlogLink(blog.ID, blog.Title)}}">
+                            Read more &rarrlp;
+                        </a>
+                    </div>
+                </article>
+                <div class="content-divider"></div>
+            </div>
+        </div>
+        <div ng-hide="!listOfBlogs.length">
+            @Html.Partial("Partials/_BlogPagination")
+            <div class="content-divider show-for-small-only"></div>
+        </div>
+    </div>
+
+
+
+    <div ng-hide="listOfBlogs.length" class="no-blog-found">
+        <h3 ng-bind="'No blog found'"></h3>
+        <div>
+            <a href="#" class="button tiny margin-handler ghost-button" ng-click="goToBlog()">Back to Blogs</a>
+        </div>
+    </div>
+
+    <div class="row collapse" ng-hide="!listOfBlogs.length">
+        @*<div class="large-12 columns show-for-medium-down categories ">
+            @Html.Partial("Partials/_Categories")
+        </div>*@
+
+        <div class="large-12 columns show-for-medium-down categories">
+            <div class="row">
+                <div class="large-12 column outer-panel margin-handler">
+                    @Html.Partial("Partials/_PopularPosts")
+                </div>
+            </div>
+        </div>
+
+        <div class="large-12 columns show-for-medium-down categories ">
+            <div class="row">
+                <div class="large-12 column outer-panel margin-handler">
+                    @Html.Partial("Partials/_RecentComments")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("Partials/_SidebarRight")
+
+@*<script id="dsq-count-scr" src="//premiumstress.disqus.com/count.js"></script>*@

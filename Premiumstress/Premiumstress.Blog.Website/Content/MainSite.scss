@@ -1,0 +1,212 @@
+﻿@import "PremiumstressSass/MainPage.scss";
+@import "FoundationSass/Site.scss";
+@import "PremiumstressSass/Blog/Blogs.scss";
+@import "WebIcons/webicons.scss";
+@import "PremiumstressSass/Authentication.scss";
+@import "PremiumstressSass/Footer.scss";
+@import "PremiumstressSass/Header.scss";
+@import "PremiumstressSass/Settings.scss";
+@import "PremiumstressSass/User.scss";
+@import "PremiumstressSass/About.scss";
+@import "PremiumstressSass/Contact.scss";
+@import "PremiumstressSass/Errors.scss";
+@import "PremiumstressSass/ShortFilms.scss";
+@import "PremiumstressSass/SidebarRight.scss";
+@import "font-awesome/font-awesome.scss";
+
+@import url('http://fonts.googleapis.com/css?family=Lobster+Two');
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('http://fonts.googleapis.com/css?family=Arvo');
+@import url('http://fonts.googleapis.com/css?family=Lato');
+@import url('http://fonts.googleapis.com/css?family=PT+Sans');
+
+body {
+    font-family: Source Sans Pro, sans-serif, Verdana;
+    background: #fff;
+}
+
+@font-face {
+    font-family: 'LobsterTwo-Regular';
+    src: url('http://fonts.googleapis.com/css?family=Lobster+Two');
+}
+
+@font-face {
+    font-family: 'archivoblack-webfont';
+    src: url('../fonts/archivoblack-webfont.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100);
+}
+
+.margin-handler {
+    margin-top: 30px;
+}
+
+.margin-handler-header {
+    margin-top: 55px;
+}
+
+@media #{$small-only} {
+    .margin-handler-header {
+        margin-top: 0;
+    }
+
+    .content p {
+        font-size: .9rem;
+    }
+}
+
+.outer-panel {
+  background: #ffffff none repeat scroll 0 0;
+  border-width: 1px;
+  color: #333333;
+  margin-bottom: 0;
+  padding: 20px;
+}
+
+.inner-panel {
+    background: #eee none repeat scroll 0 0;
+    border-radius: 5px;
+    border-width: 1px;
+    color: #333333;
+    margin-bottom: 1.25rem;
+    padding: 20px;
+}
+
+#blog-loading-container.preloader {
+    margin-top: 0;
+}
+
+.preloader {
+    div {
+        margin-top: 110px;
+    }
+
+    padding: 50px;
+    margin-top: 200px;
+    background: url('../Images/Preloader_5.gif') no-repeat 50% 50% transparent;
+}
+
+.show-content {
+    display: block !important;
+}
+
+.hide-content {
+    display: none !important;
+}
+
+.header-background {
+  border-bottom: 1px solid $black;
+  cursor: default;
+  color:#23958a;
+  font-family: Source Sans Pro;
+  font-size: 1em !important;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  line-height: 1.4 !important;
+  margin-bottom: 1.25rem;
+  padding: 3px;
+  text-align: left !important;
+
+}
+
+#blogComment, #aboutTextArea {
+    background-color: #fff;
+    border: 1px solid #cccccc;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-family: inherit;
+    font-size: 0.875rem;
+    height: 250px;
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    overflow-y: auto;
+    -moz-transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    -o-transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    -webkit-transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    width: 100%;
+    cursor: text;
+}
+
+#blogComment:focus, #aboutTextArea:focus {
+    border-color: #999999;
+    box-shadow: 0 0 5px #999999;
+}
+
+.media-object {
+    display: block;
+    margin-bottom: 2px;
+
+    .media-object-section {
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+//Pagination
+.pagination {
+    .fa-angle-double-left, .fa-angle-left {
+        margin-right: 5px;
+    }
+
+    .fa-angle-double-right, .fa-angle-right {
+        margin-left: 5px;
+    }
+}
+
+
+//Main Category
+.main-category {
+    /*background: $black;*/
+    margin-bottom: 0;
+    font-size: .5rem;
+
+    ul {
+        list-style: none !important;
+    }
+
+    a {
+        color: black;
+    }
+
+    a:hover {
+        color: scale-color($info-color, $lightness: -24%);
+    }
+}
+
+//Overridden styles
+.row {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 75rem !important;
+}
+
+.reveal-modal {
+    p {
+        font-size: 1rem;
+    }
+
+    a {
+        color: $black;
+    }
+}
+
+
+//Theme color
+.theme-color {
+    color: $black !important;
+}
+
+//FB plugin
+.fb-page,
+.fb-page span,
+.fb-page span iframe[style] {
+    width: 100% !important;
+}

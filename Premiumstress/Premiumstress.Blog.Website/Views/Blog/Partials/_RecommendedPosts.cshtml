@@ -1,0 +1,22 @@
+﻿<h2 ng-bind="'Recommended Posts'" class="header-background margin-handler"></h2>
+<div ng-repeat="featuredBlog in featuredBlogList" class="popular-posts">
+    <div class="row collapse">
+        @*<div class="large-5 hide-for-medium-down columns">
+                <a href="#" ng-click="goToSingleBlog(featuredBlog.ID, featuredBlog.Title)" title="{{featuredBlog.Title}}">
+                    <img ng-src="{{featuredBlog.ImageLinks.ThumbnailImageLink | searchResultImg}}" alt="" />
+                </a>
+            </div>*@
+        <div class="large-5 medium-5 small-4 columns">
+            <a href="{{getSingleBlogLink(featuredBlog.ID, featuredBlog.Title)}}" title="{{featuredBlog.Title}}">
+                <img ng-src="{{featuredBlog.ImageLinks.ThumbnailImageLink | searchResultImg}}" alt=""/>
+            </a>
+        </div>
+        <div class="large-7 medium-7 small-8 columns">
+            <div class="featured-title">
+                <a href="{{getSingleBlogLink(featuredBlog.ID, featuredBlog.Title)}}" title="{{featuredBlog.Title}}">
+                    <div ng-bind-html="(featuredBlog.Title | BlogTitleFormat)"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

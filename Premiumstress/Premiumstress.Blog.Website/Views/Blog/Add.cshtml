@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Add Blog";
+}
+
+<form name="addBlogForm" ng-controller="BlogController" ng-submit="addNewBlog(false)" id="BlogAdd" method="post" enctype="multipart/form-data">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div id="add-blog-wrapper" class="hide-content">
+        @Html.Partial("Partials/_Editor")
+    </div>
+</form>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            angular.element(document.getElementById('BlogAdd')).scope().getCategories();
+            angular.element(document.getElementById('BlogAdd')).scope().showFooter();
+            @Html.Partial("_PartialScripts/_HeadScripts");
+        });
+    </script>
+}

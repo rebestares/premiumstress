@@ -1,0 +1,100 @@
+﻿<div class="row" ng-controller="UserController">
+
+    <div class="large-12 columns outer-panel margin-handler">
+        <h2>Add New User</h2>
+        <div class="steps margin-handler">
+            <span id="account-label" class="radius selected-label settings-label">1.Account</span>
+            <span id="details-label" class="radius settings-label">2.Details</span>
+        </div>
+
+        <div>
+            <div id="addUserModal"></div>
+            <form name="addUser">
+                <div class="row inner-panel">
+                    <div class="large-12 columns" id="step-1">
+                        <div data-alert class="alert-box + {{alertClass}} + radius" ng-bind="alertMessage" ng-show="alertMessage">
+                            None<a class="close">&times;</a>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns">
+                                <span class="prefix"><i class="fi-mail"></i></span>
+                            </div>
+                            <div class="small-10  columns">
+                                <input type="email" placeholder="Email" name="email" ng-keyup="checkEmail()" required ng-model="user.email">
+                                <div data-alert ng-if="!emailIsUnique" class="alert-box alert radius">
+                                    Email is already taken, please choose another one.
+                                </div>
+                                <span style="color: red" ng-show="addUser.email.$dirty && addUser.email.$invalid"></span>
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns ">
+                                <span class="prefix"><i class="fi-lock"></i></span>
+                            </div>
+                            <div class="small-10 columns ">
+                                <input type="password" placeholder="Password" name="password" required ng-model="user.password">
+                            </div>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2 columns ">
+                                <span class="prefix"><i class="fi-lock"></i></span>
+                            </div>
+                            <div class="small-10 columns ">
+                                <input type="password" placeholder="Confirm Password" name="confirmPassword" required ng-model="user.confirmPassword">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="large-12 columns hide margin-handler" id="step-2">
+                        <div class="row collapse">
+                            <div class="small-2  columns">
+                                <span class="prefix"><i class="fi-torso"></i></span>
+                            </div>
+                            <div class="small-10  columns">
+                                <input type="text" placeholder="First Name" name="firstname" required ng-model="user.firstName">
+                            </div>
+                            <span style="color: red" ng-show="addUser.firstname.$dirty"></span>
+                        </div>
+                        <div class="row collapse">
+                            <div class="small-2  columns">
+                                <span class="prefix"><i class="fi-torso"></i></span>
+                            </div>
+                            <div class="small-10  columns">
+                                <input type="text" placeholder="Last Name" name="lastname" required ng-model="user.lastName">
+                            </div>
+                        </div>
+
+                        <div class="row collapse">
+                            <div class="small-2  columns">
+                                <span class="prefix"><i class="fi-info"></i></span>
+                            </div>
+                            <div class="small-10  columns">
+                                <input type="text" placeholder="About" name="about" required ng-model="user.about">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <ul class="button-group right margin-handler">
+                    <li>
+                        <div id="prev-btn" class="button disabled radius tiny" ng-click="proceedToStep(1)">Previous</div>
+                    </li>
+                    <li>
+                        <div id="next-btn" class="button radius tiny" ng-click="proceedToStep(2)">Next</div>
+                    </li>
+                    <li>
+                        <div id="save-btn" ng-click="registerUser()" class="tiny disabled radius button">Save</div>
+                    </li>
+                    <li>
+                        <div class="button radius tiny">Reset</div>
+                    </li>
+                </ul>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

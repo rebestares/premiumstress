@@ -1,0 +1,23 @@
+﻿<div class="content specific-person" id="panel2">
+    <div class="section-container tabs" data-tab>
+        <section class="tab-title active">
+            <h5 class="title">Specific Person</h5>
+            <div class="row">
+                <div class="small-12 columns">
+                    <div class="content" data-slug="panel2">
+                        <ul class="large-block-grid-5">
+                            <li ng-repeat="person in staff">
+                                <a href="{{'mailto:' + person.Email}}">
+                                    <img ng-src="{{person.ImageLinks.FullImageLink}}">
+                                    <span ng-bind="person.Fullname"></span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

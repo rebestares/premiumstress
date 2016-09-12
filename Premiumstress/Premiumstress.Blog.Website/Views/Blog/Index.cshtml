@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Stress Provider";
+}
+
+<div data-ng-controller="BlogController" id="BlogContainer">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div class="row hide-content" id="blog-wrapper">
+        @*Search blog text-input*@
+        <div data-ng-include="'Template/Blog/SearchBlog.html'"></div>
+        @*Premiumstress Logo and Ads*@
+        @*@Html.Partial("Partials/_LogoAndView")*@
+        @*@Html.Partial("Partials/_PromotedArticle")*@
+        <div ng-view autoscroll="true"></div>
+
+        @*Sidebar*@
+        <div class="large-3 columns hide-for-medium-down side-bar-container">
+            <div class="row outer-panel ">
+                <header-sidebar title="Category" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Suggested Articles" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Popular Posts" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Tags" is-collapsed="true"></header-sidebar>
+                <header-sidebar title="Follow Us" is-collapsed="true"></header-sidebar>
+
+                @*<header-sidebar title="Recent Comments" icon-style="fa-comment-o"></header-sidebar>*@
+                @*@Html.Partial("Partials/_RecentComments")*@
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts");
+        });
+    </script>
+}

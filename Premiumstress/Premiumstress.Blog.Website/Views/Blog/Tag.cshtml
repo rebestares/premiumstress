@@ -1,0 +1,19 @@
+﻿<div data-ng-controller="BlogController" id="BlogContainer">
+    @Html.Partial("Partials/_SearchBlog")
+    @Html.Partial("Partials/_LogoAndView")
+    @Html.Partial("Partials/_Categories")
+    @Html.Partial("Partials/_BlogContainer")
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var pageDetails = @Html.Raw(Json.Encode(Model));
+            angular.element(document.getElementById('BlogContainer')).scope().getSocialCounts();
+            angular.element(document.getElementById('BlogContainer')).scope().getCategories();
+            angular.element(document.getElementById('BlogContainer')).scope().getBlogsByTag(pageDetails.Page,pageDetails.Tag);
+            angular.element(document.getElementById('BlogContainer')).scope().getFeatured();
+            @Html.Partial("_PartialScripts/_HeadScripts")
+        });
+    </script>
+}

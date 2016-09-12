@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+
+<!-- End Top Bar -->
+<!-- Main Page Content and Sidebar -->
+<div id="AdminContainer" ng-controller="AdminController">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div class="row hide-content" id="login-container-wrapper">
+        <div class="large-6 columns large-push-3">
+            <h3>Are you an admin? If not, please go back to <a href="/" class="link-to-home">Home.</a> </h3>
+            <br />
+            <label>
+                Username
+                <input type="text" placeholder="Username" ng-model="credentials.email" />
+            </label>
+            <label>
+                Password
+                <input type="password" placeholder="Password" ng-model="credentials.password"
+                       ng-keypress="($event.which === 13) ? authenticateUser() : 0 " />
+            </label>
+            <div data-alert ng-if="!authenticated" class="alert-box alert radius">
+                Incorrect username or password.<a href="#" class="close">&times;</a>
+            </div>
+            <a ng-click="authenticateUser()" class="button small">Login</a>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts")
+            // angular.bootstrap(document.getElementById('ContactContainer'), ['ContactModule']);
+            angular.element(document.getElementById('AdminContainer')).scope().showLoginForm();
+            //angular.bootstrap(document.getElementById('myapp'), ['MyNameIsApp']);
+        });
+    </script>
+}

@@ -1,0 +1,180 @@
+﻿@using Premiumstress.Blog.Website.Html
+@{
+    var testModel = TempData["isLoggedIn"];
+}
+
+<style>
+    .top-bar {
+        left: 0;
+        margin: auto;
+        position: fixed;
+        right: 0;
+        z-index: 1;
+    }
+
+    .home-logo {
+        color: white;
+        font-family: 'Lobster Two';
+        font-size: 30px;
+        margin-left: 8px;
+    }
+</style>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+<div data-ng-controller="AuthenticationController" id="HeaderContainer">
+    <div class="row">
+        <div class="large-10 columns">
+            <nav class="top-bar main-menu" data-topbar role="navigation" >
+                <div class="row">
+                    <div class="large-2 columns">
+                        <ul class="title-area">
+                            <li class="name">
+                                <a href="/" target="_self">
+                                    <h1 class="name">PremiumStress</h1>
+                                </a>
+                            </li>
+                            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                            <li class="toggle-topbar menu-icon">
+                                <a class="menu-button" ng-click="expandMenu()">
+                                    <span>Menu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="large-4 columns">
+                        <section class="top-bar-section navigation-header-topbar">
+                            <!-- Right Nav Section -->
+                            <ul class="right">
+                                @Html.NavigationLink("Home", "", "blog")
+                                @*@Html.NavigationLink("Short Films", "", "shortfilms")*@
+                                @Html.NavigationLink("About", "", "about")
+                                @Html.NavigationLink("Contact", "", "contact")
+                                @Html.NavigationLink("Settings", "", "admin")
+                                @Html.NavigationLink("Logout", "Signout", "signout")
+                            </ul>
+
+                            <!-- Left Nav Section -->
+                            <ul class="left"></ul>
+                        </section>
+                    </div>
+                </div>
+            </nav>
+            <!-- modal content -->
+        </div>
+        @*<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="login or sign up" aria-hidden="true" role="dialog">
+            <div class="row">
+                <div class="large-6 columns auth-plain">
+                    <div class="signup-panel left-solid">
+                        <p class="welcome">
+                            <h3>Registered Users</h3>
+                        </p>
+                        <form name="loginUserForm" ng-submit="authenticateUser()">
+                            <div class="row collapse">
+                                <div class="small-2  columns">
+                                    <span class="prefix"><i class="fi-torso-female"></i></span>
+                                </div>
+                                <div class="small-10  columns">
+                                    <input type="email" placeholder="Email" ng-model="credentials.email" required />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2 columns ">
+                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                </div>
+                                <div class="small-10 columns ">
+                                    <input type="password" placeholder="Password" ng-model="credentials.password" required />
+                                </div>
+                            </div>
+                            <div data-alert ng-if="!authenticated" class="alert-box alert radius">
+                                Incorrect username or password.
+                            </div>
+                            <input class="button tiny" type="submit" value="Log In">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="large-6 columns auth-plain">
+                    <div class="signup-panel newusers">
+                        <p class="welcome">
+                            <h3>New User?</h3>
+                        </p>
+                        <p>By creating an account you could post blogs and access our other services.</p><br>
+                        <a href="#" class="button tiny" data-reveal-id="signUpModal">Sign Up</a>
+                        </br>
+                    </div>
+                    <div id="signUpModal" class="reveal-modal row" data-reveal aria-labelledby="login or sign up" aria-hidden="true" role="dialog">
+                        <div class="large-12 columns">
+                            <h2 id="modalTitle">Come and join us!</h2>
+                            <form name="addUser" ng-submit="registerUser(user)">
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <div class="row collapse">
+                                            <div class="small-2  columns">
+                                                <span class="prefix"><i class="fi-torso"></i></span>
+                                            </div>
+                                            <div class="small-10  columns">
+                                                <input type="text" placeholder="First Name" name="firstname" required ng-model="user.firstName">
+                                            </div>
+                                            <span style="color: red" ng-show="addUser.firstname.$dirty"></span>
+                                        </div>
+                                        <div class="row collapse">
+                                            <div class="small-2  columns">
+                                                <span class="prefix"><i class="fi-torso"></i></span>
+                                            </div>
+                                            <div class="small-10  columns">
+                                                <input type="text" placeholder="Last Name" name="lastname" required ng-model="user.lastName">
+                                            </div>
+                                        </div>
+                                        <div class="row collapse">
+                                            <div class="small-2 columns">
+                                                <span class="prefix"><i class="fi-mail"></i></span>
+                                            </div>
+                                            <div class="small-10  columns">
+                                                <input type="email" placeholder="Email" name="email" ng-keyup="checkEmail()" required ng-model="user.email">
+                                                <div data-alert ng-if="!emailIsUnique" class="alert-box alert radius">
+                                                    Email is already taken, please choose another one.
+                                                </div>
+                                                <span style="color: red" ng-show="addUser.email.$dirty && addUser.email.$invalid"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row collapse">
+                                            <div class="small-2 columns ">
+                                                <span class="prefix"><i class="fi-lock"></i></span>
+                                            </div>
+                                            <div class="small-10 columns ">
+                                                <input type="password" placeholder="Password" name="password" required ng-model="user.password">
+                                            </div>
+
+                                            <ul class="button-group">
+                                                <li>
+                                                    <input type="submit" class="button tiny" value="Sign Up" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <ul class="stack button-group">
+
+                                            <li>
+                                                <button href="#" class="facebook left-icon button split" ng-click="fblogin()"> <span></span>sign in with facebook</button>
+                                            </li>
+                                            <li>
+                                                <button href="#" class="twitter left-icon button split"> <span></span>sign in with twitter</button>
+                                            </li>
+                                            <li>
+                                                <button href="#" class="google left-icon button split"> <span></span>sign in with google +</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a class="close-reveal-modal" aria-label="Close" ng-click="resetForm()">&#215;</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="close-reveal-modal" aria-label="Close" ng-click="resetForm()">&#215;</a>
+        </div>*@
+    </div>
+
+</div>

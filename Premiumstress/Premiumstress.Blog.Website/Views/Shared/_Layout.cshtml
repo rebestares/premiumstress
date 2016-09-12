@@ -1,0 +1,65 @@
+﻿@{
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    bool isLoginPage = controller.ToLower() == "authentication" ? true : false;
+}
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" data-ng-app="BucketList" ng-cloak>
+<head>
+
+    @Html.Partial("_PartialLinks/_IEHandler")
+
+    <title>PremiumStress | @ViewBag.Title</title>
+    <base href="/" />
+    <meta charset="utf-8"/>
+    <meta name="google-site-verification" content="saC2O73Rw1cJiv29gvmiMQDU5_uhhkFjQEH1E_kzJ_g" />
+    <meta name="description" content="It's either we ease your stress or we give you stress" />
+    @*Set the viewport width to device width for mobile *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    @Styles.Render("~/bundles/styles")
+    @RenderSection("head", required: false)
+
+    @Html.Partial("_PartialLinks/_GooglePlusVerification")
+    @Html.Partial("_PartialLinks/_Favicons")
+
+</head>
+<body ng-controller="MainController">
+    @Scripts.Render("~/bundles/scripts")
+
+    @*Load partial header if not on the login page*@
+    @if (!isLoginPage)
+    {
+        @Html.Partial("_Header")
+    }
+    <div class="margin-handler-header default-styles" ng-cloak>
+        @RenderBody()
+    </div>
+
+    @*Load partial footer if not on the login page*@
+    @if (!isLoginPage)
+    {
+        <div class="hide-content margin-handler" id="footer-container">
+            @Html.Partial("_Footer")
+        </div>
+    }
+
+    @*Use the Scripts section to define page specific scripts*@
+    @RenderSection("scripts", required: true)
+
+    @*This is a pre-requisite when using the fb sdk*@
+    <div id="fb-root"></div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $(document).foundation();
+        @Html.Partial("_PartialScripts/_GoogleAnalytics")
+        @Html.Partial("_PartialScripts/_FacebookSDK")
+        @Html.Partial("_PartialScripts/_TwitterSDK")
+    });
+</script>

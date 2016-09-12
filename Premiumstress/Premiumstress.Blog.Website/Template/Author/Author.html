@@ -1,0 +1,50 @@
+﻿<div class="content medium-12 large-8 columns margin-handler"
+     ng-swipe-right="goTo('/Blog/Page/'+(currentPageNum-1))">
+
+    <!--Categories navigation & tags for medium and small-->
+    <div class="row collapse">
+        <div class="large-12 columns show-for-medium-down categories">
+            <div class="row">
+                <div class="large-12 column outer-panel">
+                    <header-sidebar title="Category" is-collapsed="true" icon-style="fa-folder-open"></header-sidebar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--User Info-->
+    <div class="outer-panel row">
+        <div class="large-12">
+            <div class="row collapse user">
+                <div class="large-12 columns">
+                    <h2 ng-bind="'About the author'" class="header-background text-center"></h2>
+                    <div class="row collapse">
+                        <div class="large-2 medium-2 small-12 columns">
+                            <div class="row">
+                                <div class="large-12 column">
+                                    <img alt="person" class="author"
+                                         ng-src="{{userProfile.ImageLinks.FullImageLink | searchResultImg}}"
+                                         style="margin-right: 10px;"/>
+                                    <span class="show-for-small-only"><h3 ng-bind="userProfile.Fullname"></h3></span>
+                                </div>
+                            </div>
+                            <div class="row hide-for-small">
+                                <div class="large-12 column text-center">
+                                    <h3 ng-bind="userProfile.Fullname"></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="large-10 medium-10 small-12 columns">
+
+                            <div ng-bind-html="userProfile.About" class="text-center about"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-include="'Template/Blog/BlogList/_Body.html'" class="margin-handler"></div>
+</div>
+

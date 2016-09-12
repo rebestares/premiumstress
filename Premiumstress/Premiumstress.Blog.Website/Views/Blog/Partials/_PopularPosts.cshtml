@@ -1,0 +1,43 @@
+﻿
+
+
+<div ng-bind="'Popular Posts'"
+     class="header-background">
+</div>
+<div ng-repeat="featuredBlog in featuredBlogList" class="popular-posts">
+    <div class="row collapse">
+        <div class="media-object">
+            <div class="media-object-section">
+                <a href="{{getSingleBlogLink(featuredBlog.ID, featuredBlog.Title)}}" title="{{featuredBlog.Title}}">
+                    <div class="thumbnail">
+                        <img ng-src="{{featuredBlog.ImageLinks.ThumbnailImageLink | searchResultImg}}" alt="{{featuredBlog.Title}}" class="portrait"/>
+                    </div>
+                </a>
+            </div>
+            <div class="media-object-section">
+                <div class="featured-title">
+                    <a href="{{getSingleBlogLink(featuredBlog.ID, featuredBlog.Title)}}" title="{{featuredBlog.Title}}">
+                        <div ng-bind-html="(featuredBlog.Title | BlogTitleFormat)"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*ADS FOR GOOGLE*@
+@*<div class="row">
+        <div class="large-12 margin-handler-header columns">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-4689506079033489"
+                 data-ad-slot="5121135144"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>*@
+

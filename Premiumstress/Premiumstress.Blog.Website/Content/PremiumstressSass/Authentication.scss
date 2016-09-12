@@ -1,0 +1,66 @@
+﻿@import "../FoundationSass/foundation/components/_global.scss";
+@import "Globals.scss";
+
+$facebook-color: #3b5998;
+$twitter-color: #00aced;
+$google-plus-color: #dd4b39;
+$auto: auto;
+$border-color: #888888;
+
+.login-container {
+    border: 1px solid $border-color;
+    box-shadow: 4px 7px 10px $border-color;
+    left: 0;
+    margin: $auto;
+    right: 0;
+    width: 650px;
+}
+
+.login-container-inner {
+    padding: 20px;
+}
+
+.login-header {
+    left: 0;
+    margin-left: $auto;
+    margin-right: $auto;
+    margin-top: 15px;
+    right: 0;
+    width: 190px;
+    font-family: 'Lobster Two';
+    font-size: 50px;
+}
+
+.register-container{
+    font-size:small;
+}
+.sign-up-link{
+    color:$info-color;
+}
+
+.sign-up-link:hover{
+    color:scale-color($info-color, $lightness: -14%);
+}
+.facebook-button, .facebook-button:focus {
+    background-color: $facebook-color;
+}
+
+.facebook-button:hover {
+    background-color: scale-color($facebook-color, $lightness: -14%);
+}
+
+.twitter-button, .twitter-button:focus {
+    background-color: $twitter-color;
+}
+
+.twitter-button:hover {
+    background-color: scale-color($twitter-color, $lightness: -14%);
+}
+
+.google-button, .google-button:focus {
+    background-color: $google-plus-color;
+}
+
+.google-button:hover {
+    background-color: scale-color($google-plus-color, $lightness: -14%);
+}

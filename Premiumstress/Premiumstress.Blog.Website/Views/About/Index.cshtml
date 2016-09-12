@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<div class="row" id="AboutContainer" ng-controller="AboutController">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div id="about-wrapper" class="hide-content">
+        <div class="row">
+            <div class="large-12 column">
+
+                <div class="row collapse">
+                    <div class="path-container">
+                        <div class="row">
+                            <div class="large-12 columns ">
+                                <h1>What's premiumstress all about?</h1>
+                            </div>
+                        </div>
+                        <div class="row path-item">
+                            <div class="large-7 push-5 columns">
+                                <div class="circle circle-blog circle-left "></div>
+                            </div>
+                            <div class="large-5 pull-7 columns path-text left">
+                                <h3>Blogging website?</h3>
+                                <p>
+                                    Yes! From web development, adventures, music, food, art, games, and everything on the top of the writers head.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row path-item">
+                            <div class="large-7 columns">
+                                <div class="circle circle-shortfilm circle-right right">
+
+                                </div>
+                            </div>
+                            <div class="large-5 columns path-text right">
+                                <h3>Shortfilms</h3>
+                                <p>Coming soon!</p>
+                            </div>
+                        </div>
+                        <div class="row get-feedback path-item">
+                            <div class="large-7 push-5 columns">
+                                <div class="circle circle-photography circle-left"></div>
+                            </div>
+                            <div class="large-5 pull-7 columns path-text left">
+                                <h3>Photography skills</h3>
+                                <p>Coming soon!</p>
+                            </div>
+                        </div>
+                        <div class="row land-job path-item">
+                            <div class="large-7 columns">
+                                <div class="circle circle-vlogs circle-right right"></div>
+                            </div>
+                            <div class="large-5 columns path-text right">
+                                <h3>Video blogs!</h3>
+                                <p>Coming soon!</p>
+                            </div>
+                        </div>
+                        <span class="line hide-for-small"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts")
+
+            $(".off-canvas-submenu").hide();
+            $(".off-canvas-submenu-call").click(function () {
+                var icon = $(this).parent().next(".off-canvas-submenu").is(':visible') ? '+' : '-';
+                $(this).parent().next(".off-canvas-submenu").slideToggle('fast');
+                $(this).find("span").text(icon);
+            });
+
+            angular.element(document.getElementById('AboutContainer')).scope().showFooter();
+        });
+    </script>
+}

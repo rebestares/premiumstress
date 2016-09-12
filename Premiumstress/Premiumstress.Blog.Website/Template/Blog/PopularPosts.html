@@ -1,0 +1,27 @@
+﻿<!--<div class="header-background">
+    <i class="fa fa-star"></i>
+    <span ng-bind="'Popular Posts'"
+          ng-init="getFeatured()">
+    </span>
+</div>-->
+
+<div ng-repeat="featuredBlog in featuredBlogList" class="popular-posts">
+    <div class="row collapse">
+        <div class="medium-1 columns show-for-medium-up text-center">
+            <div itemprop="datePublished" datetime="{{featuredBlog.DatePosted}}" class="date-posted datePublished">
+                <div ng-bind="getDate(featuredBlog.DatePosted)" class="date">31</div>
+                <div ng-bind="getMonth(featuredBlog.DatePosted)" class="month">Sep</div>
+            </div>
+        </div>
+        <div class="medium-10 columns">
+            <a href="{{getSingleBlogLink(featuredBlog.ID, featuredBlog.Title)}}"
+               class="blog-title-formatting"
+               title="{{featuredBlog.Title}}"
+               target="_self">
+                <h2 itemprop="headline" ng-bind-html="(featuredBlog.Title | BlogTitleFormat)" class="headline"></h2>
+            </a>
+            <span ng-bind="timeSince(featuredBlog.DatePosted)" class="time-since"></span>
+        </div>
+
+    </div>
+</div>

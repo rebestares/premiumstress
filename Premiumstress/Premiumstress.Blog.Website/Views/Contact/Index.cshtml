@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+
+<!-- End Top Bar -->
+<!-- Main Page Content and Sidebar -->
+<div id="ContactContainer" ng-controller="ContactController">
+    <div class="preloader" id="Loading-container">
+        <div class="text-center">Loading...</div>
+    </div>
+    <div class="row hide-content" id="contact-us-wrapper">
+        <div class="row">
+            <div class="large-12 column profile-card">
+                <div class="row">
+                    <!-- Contact Details -->
+                    <div class="large-9 columns margin-handler margin-handler-contact">
+                        <div id="successAlert" class="success-reveal-class small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                            <a class="close-reveal-modal-success" aria-label="Close" ng-click="closeSuccessAlert()">&#215;</a>
+                            <h2 id="modalTitle">Success!</h2>
+                            <p class="lead">Message sent.</p>
+
+                        </div>
+
+                        <h4 class="title">Contact us</h4>
+                        <p>
+                            We'd like to hear your suggestions, rants or even issues. We love getting emails all day, yes <em>all</em> day.
+                        </p>
+                        @*<ul class="tabs" data-tab>
+                <li class="tab-title active"><a href="contact/#/us">Contact Us</a></li>
+                <li class="tab-title"><a href="contact/#/specific">Contact Specific Person</a></li>
+            </ul>*@
+                        <div class="tabs-content">
+                            <div class="content active" id="panel1">
+                                <section class="tab-title active">
+
+                                    <div class="content" data-slug="panel1">
+                                        <form ng-submit="sendEmailToAdmin()">
+                                            <div class="row collapse">
+                                                <div class="large-2 columns">
+                                                    <label class="inline">Your Name</label>
+                                                </div>
+                                                <div class="large-10 columns">
+                                                    <input type="text" ng-model="email.Name" placeholder="John Doe" required>
+                                                </div>
+                                            </div>
+                                            <div class="row collapse">
+                                                <div class="large-2 columns">
+                                                    <label class="inline"> Your Email</label>
+                                                </div>
+                                                <div class="large-10 columns">
+                                                    <input type="text" ng-model="email.EmailAddress" placeholder="johndoe@seven.com" required>
+                                                </div>
+                                            </div>
+                                            <label>What's up?</label>
+                                            <textarea rows="4" ng-model="email.Body" required></textarea>
+                                            <button type="submit" class="tiny button" ng-disabled="transactionInProgress">Submit</button>
+                                        </form>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                        <div class="content-divider show-for-medium-down"></div>
+                    </div>
+
+                    <div class="large-3 columns margin-handler">
+
+                        <h4 class="title">Contact a specific person</h4>
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <div class="content" data-slug="panel2">
+                                    <ul class="large-block-grid-5">
+                                        <li ng-repeat="person in staff">
+                                            <a href="{{'mailto:' + person.Email}}">
+                                                <img ng-src="{{person.ImageLinks.FullImageLink}}">
+                                                <span ng-bind="person.Fullname"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Contact Details -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @Html.Partial("_PartialScripts/_HeadScripts")
+            // angular.bootstrap(document.getElementById('ContactContainer'), ['ContactModule']);
+            angular.element(document.getElementById('ContactContainer')).scope().getStaffProfiles();
+            //angular.bootstrap(document.getElementById('myapp'), ['MyNameIsApp']);
+        });
+    </script>
+}

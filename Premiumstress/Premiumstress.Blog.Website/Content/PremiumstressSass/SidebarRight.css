@@ -1,0 +1,271 @@
+﻿meta.foundation-version {
+  font-family: "/{{VERSION}}/";
+}
+
+meta.foundation-mq-small {
+  font-family: "/only screen/";
+  width: 0;
+}
+
+meta.foundation-mq-small-only {
+  font-family: "/only screen and (max-width: 40em)/";
+  width: 0;
+}
+
+meta.foundation-mq-medium {
+  font-family: "/only screen and (min-width:40.063em)/";
+  width: 40.063em;
+}
+
+meta.foundation-mq-medium-only {
+  font-family: "/only screen and (min-width:40.063em) and (max-width:64em)/";
+  width: 40.063em;
+}
+
+meta.foundation-mq-large {
+  font-family: "/only screen and (min-width:64.063em)/";
+  width: 64.063em;
+}
+
+meta.foundation-mq-large-only {
+  font-family: "/only screen and (min-width:64.063em) and (max-width:90em)/";
+  width: 64.063em;
+}
+
+meta.foundation-mq-xlarge {
+  font-family: "/only screen and (min-width:90.063em)/";
+  width: 90.063em;
+}
+
+meta.foundation-mq-xlarge-only {
+  font-family: "/only screen and (min-width:90.063em) and (max-width:120em)/";
+  width: 90.063em;
+}
+
+meta.foundation-mq-xxlarge {
+  font-family: "/only screen and (min-width:120.063em)/";
+  width: 120.063em;
+}
+
+meta.foundation-data-attribute-namespace {
+  font-family: false;
+}
+
+html, body {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 100%;
+}
+
+body {
+  background: #fff;
+  color: #222;
+  padding: 0;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif, Verdana;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  cursor: auto;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  -ms-interpolation-mode: bicubic;
+}
+
+#map_canvas img,
+#map_canvas embed,
+#map_canvas object,
+.map_canvas img,
+.map_canvas embed,
+.map_canvas object {
+  max-width: none !important;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.hide {
+  display: none !important;
+  visibility: hidden;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+textarea {
+  height: auto;
+  min-height: 50px;
+}
+
+select {
+  width: 100%;
+}
+
+.dsq-widget-list {
+  font-family: 'PT Sans', sans-serif !important;
+  font-size: .9rem;
+}
+
+.dsq-widget-list a:hover {
+  color: #23958a !important;
+}
+
+.dsq-widget-list a {
+  font-style: italic !important;
+}
+
+.dsq-widget-comment p, .dsq-widget-list {
+  font-size: .8rem !important;
+}
+
+.categories h2 {
+  margin-bottom: 5px;
+}
+
+.categories ul {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.categories a {
+  color: #222 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .6rem !important;
+  font-family: Verdana;
+}
+
+.categories a.active-category {
+  background: black none repeat scroll 0 0;
+  border-radius: 3px;
+  color: white !important;
+  padding: 5px;
+}
+
+.categories a:hover {
+  color: #28a99d !important;
+}
+
+.categories h2 {
+  font-size: 1.5rem;
+}
+
+.sidebar-right ul {
+  margin-bottom: .5rem !important;
+  list-style: none !important;
+}
+
+.sidebar-right h2 {
+  font-size: 1.5rem;
+}
+
+ul.pagination {
+  margin-bottom: 0;
+}
+
+.featured-title div {
+  font-size: .8rem;
+  font-weight: bold;
+  font-family: Verdana, 'Source Sans Pro', sans-serif;
+  margin-left: 10px;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.featured-title a {
+  color: #222;
+}
+
+.featured-title a:hover {
+  color: #28a99d;
+}
+
+.featured-title .shares {
+  color: #000;
+  margin-top: 10px;
+}
+
+.featured-title .shares:hover {
+  cursor: pointer;
+  color: #E71D36;
+}
+
+.thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100% !important;
+  width: auto;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  padding: 3px;
+}
+
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}
+
+.recent-comment {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=SidebarRight.css.map */
